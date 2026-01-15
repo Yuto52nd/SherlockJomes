@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #040f04;
+}
+
+titleb{
+    font-size: 0.5em;
+}
+
+.loginScreen {
+    background-color: #bfa86d;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.gameTitle {
+    color: #040f04  
+}
+
+.gameCodeTitle,.usernameTitle {
+    display: block;
+    font-weight: bold;
+    color: #040f04;
+    text-align: center;
+    position: relative;
+}
+
+.textInput {
+    background-color: #a24230;
+    border-color: #71392b;
+    display: block;
+    margin: 10px auto;
+}
+
+.joinButton {
+    background-color: #040f04;
+    color: #bfa86d;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0 auto;
+}
+.joinButton:hover {
+    background-color: #333333;
+}

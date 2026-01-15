@@ -1,0 +1,57 @@
+#:kivy 2.0.0
+
+ScreenManager:
+    WelcomeScreen:
+
+<WelcomeScreen@Screen>:
+    name: "welcomeScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 25
+
+        # Title
+        Label:
+            text: '221B Baker Street'
+            font_size: '48sp'
+            bold: True
+            size_hint_y: 0.3
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+        # Subtitle / flavour text
+        Label:
+            text: 'A Mystery Awaits...'
+            font_size: '24sp'
+            italic: True
+            size_hint_y: 0.15
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+        # Description
+        Label:
+            text:
+                "Don your deerstalker,\nput a match to your cherry wood pipe,\nand begin your investigation"
+            font_size: '18sp'
+            size_hint_y: 0.3
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+        # Spacer
+        Widget:
+            size_hint_y: 0.1
+
+        # Create Game button
+        Button:
+            text: 'Create New Game'
+            font_size: '22sp'
+            size_hint: (0.6, 0.15)
+            pos_hint: {'center_x': 0.5}
+            background_normal: ''
+            background_color: (0.016, 0.059, 0.016, 1)
+            on_release:
+                root.manager.current = "gameScreen"

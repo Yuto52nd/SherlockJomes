@@ -1,0 +1,31 @@
+ScreenManager:
+
+    Screen:
+        name: 'screen1'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'This is Screen 1'
+            Button:
+                text: 'Go to Screen 2'
+                on_press: root.manager.current = 'screen2'
+
+    Screen:
+        name: 'screen2'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'This is Screen 2'
+            Button:
+                text: 'Go to Screen 3'
+                on_press: root.manager.current = 'screen3'
+
+    Screen:
+        name: 'screen3'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'This is Screen 3'
+            Button:
+                text: 'Back to Screen 1'
+                on_press: root.manager.current = 'screen1'
