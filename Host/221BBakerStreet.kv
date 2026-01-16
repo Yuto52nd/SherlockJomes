@@ -6,52 +6,122 @@ ScreenManager:
 <WelcomeScreen@Screen>:
     name: "welcomeScreen"
 
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 40
-        spacing: 25
+    canvas.before:
+        Rectangle:
+            source: 'Images/Background.png'
+            pos: self.pos
+            size: self.size
 
-        # Title
-        Label:
-            text: '221B Baker Street'
-            font_size: '48sp'
-            bold: True
-            size_hint_y: 0.3
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+    Label:
+        id: notificationLabel
+        text: ''
+        font_size: self.height * 0.5
+        bold: True
+        color: (1, 1, 1, 1)
+        size_hint: (None, None)
+        size: (self.texture_size[0] + 40, 50)
+        pos_hint: {'center_x': 0.5, 'top': 0.95}
+        opacity: 0
+        canvas.before:
+            Color:
+                rgba: (0, 0, 0, 0.8)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [10]
 
-        # Subtitle / flavour text
-        Label:
-            text: 'A Mystery Awaits...'
-            font_size: '24sp'
-            italic: True
-            size_hint_y: 0.15
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+    FloatLayout:
+        # Title and buttons container
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 0
+            size_hint: (0.8, None)
+            height: self.width * 0.176
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
-        # Description
-        Label:
-            text:
-                "Don your deerstalker,\nput a match to your cherry wood pipe,\nand begin your investigation"
-            font_size: '18sp'
-            size_hint_y: 0.3
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 0
+                size_hint_x: 0.667
+                # Title
+                Label:
+                    text: '221B Baker Street'
+                    font_size: self.height * 0.6
+                    bold: True
+                    color: (1, 1, 1, 1)
+                    size_hint: (1, 0.5)
+                    halign: 'center'
+                    valign: 'center'
+                    text_size: self.size
+                    padding: (0, 0)
+                    canvas.before:
+                        Color:
+                            rgba: (0, 0, 0, 0.7)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    canvas.after:
+                        Color:
+                            rgba: (0, 0, 0, 1)
+                        Line:
+                            rectangle: (*self.pos, *self.size)
+                            width: 2
 
-        # Spacer
-        Widget:
-            size_hint_y: 0.1
+                # Menu buttons container
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 0
+                    size_hint: (1, 0.5)
 
-        # Create Game button
-        Button:
-            text: 'Create New Game'
-            font_size: '22sp'
-            size_hint: (0.6, 0.15)
-            pos_hint: {'center_x': 0.5}
-            background_normal: ''
-            background_color: (0.016, 0.059, 0.016, 1)
-            on_release:
-                root.manager.current = "gameScreen"
+                    # Customise button
+                    Button:
+                        id: customiseButton
+                        text: 'Customise'
+                        font_size: self.height * 0.28
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0.7)
+                        size_hint_x: 0.5
+                        canvas.after:
+                            Color:
+                                rgba: (0, 0, 0, 1)
+                            Line:
+                                rectangle: (*self.pos, *self.size)
+                                width: 2
+
+                    # Settings button
+                    Button:
+                        id: settingsButton
+                        text: 'Settings'
+                        font_size: self.height * 0.28
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0.7)
+                        size_hint_x: 0.5
+                        canvas.after:
+                            Color:
+                                rgba: (0, 0, 0, 1)
+                            Line:
+                                rectangle: (*self.pos, *self.size)
+                                width: 2
+
+            # Create Game button with arrow
+            Button:
+                id: createGameButton
+                text: 'CREATE\nGAME    >'
+                font_size: self.height * 0.28
+                bold: True
+                color: (1, 1, 1, 1)
+                background_normal: ''
+                background_color: (0, 0, 0, 0.7)
+                size_hint_x: 0.333
+                on_release:
+                    root.manager.current = "gameScreen"
+                canvas.after:
+                    Color:
+                        rgba: (0, 0, 0, 1)
+                    Line:
+                        rectangle: (*self.pos, *self.size)
+                        width: 2
