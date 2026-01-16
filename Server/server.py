@@ -16,5 +16,10 @@ def index():
 ##############
 # API Routes #
 ##############
+
+@ server.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({"message": "pong"})
+
 if __name__ == '__main__':
     server.run(host='0.0.0.0', port=5000, debug=True)
