@@ -1,8 +1,13 @@
 #:kivy 2.0.0
 #:import Animation kivy.animation.Animation
-
+#:import switchScreen host.switchScreen
+#:import toggleSettingsViews host.toggleSettingsViews
+#:import toggleFullscreen host.toggleFullscreen
+#:import NoTransition kivy.uix.screenmanager.NoTransition
 ScreenManager:
+    transition: NoTransition()
     WelcomeScreen:
+    SettingsScreen:
 
 <WelcomeScreen@Screen>:
     name: "welcomeScreen"
@@ -117,6 +122,8 @@ ScreenManager:
                         background_normal: ''
                         background_color: (0, 0, 0, 0.7)
                         size_hint_x: 0.5
+                        on_release:
+                            switchScreen('settingsScreen', root.manager)
                         on_enter:
                             Animation(size_hint_x=0.52, font_size=self.height * 0.40, d=0.2).start(self)
                         on_leave:
@@ -162,3 +169,596 @@ ScreenManager:
         halign: 'center'
         valign: 'center'
         opacity: 1
+
+<SettingsScreen@Screen>:
+    name: "settingsScreen"
+
+    canvas.before:
+        Rectangle:
+            source: 'Images/Background.png'
+            pos: self.pos
+            size: self.size
+
+    Label:
+        id: notificationLabel
+        text: ''
+        font_size: self.height * 0.5
+        bold: True
+        color: (1, 1, 1, 1)
+        size_hint: (None, None)
+        size: (self.texture_size[0] + 40, 50)
+        pos_hint: {'center_x': 0.5, 'top': 0.95}
+        opacity: 0
+        canvas.before:
+            Color:
+                rgba: (0, 0, 0, 0.8)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [10]
+
+    FloatLayout:
+        # Back Button
+        Button:
+            text: '<'
+            font_size: self.height * 0.6
+            bold: True
+            color: (1, 1, 1, 1)
+            size_hint: (None, None)
+            size: (root.height * 0.12, root.height * 0.12)
+            pos_hint: {'x': 0.03, 'top': 0.95}
+            background_color: (0, 0, 0, 0)
+            on_release:
+                switchScreen('welcomeScreen', root.manager)
+            canvas.before:
+                Color:
+                    rgba: (0.05, 0.1, 0.15, 0.8)
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+            canvas.after:
+                Color:
+                    rgba: (0, 0, 0, 1)
+                Line:
+                    circle: (self.center_x, self.center_y, self.width / 2)
+                    width: 2
+
+        # Top Navigation Bar
+        ScrollView:
+            id: nav_scroll
+            size_hint: (0.85, 0.12)
+            pos_hint: {'right': 0.97, 'top': 0.95}
+            do_scroll_y: False
+            do_scroll_x: True
+            bar_width: 0
+            
+            canvas.before:
+                Color:
+                    rgba: (0.05, 0.08, 0.12, 0.8)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                Color:
+                    rgba: (0, 0, 0, 1)
+                Line:
+                    rectangle: (self.x, self.y, self.width, self.height)
+                    width: 2
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_x: None
+                width: self.minimum_width
+                
+                Widget:
+                    size_hint: (None, 1)
+                    width: max(20, (nav_scroll.width - nav_items.width) / 2)
+
+                BoxLayout:
+                    id: nav_items
+                    orientation: 'horizontal'
+                    size_hint: (None, 1)
+                    width: self.minimum_width
+                    spacing: 50
+                    padding: [0, 0]
+
+                    HoverButton:
+                        id: videoSettingsOption
+                        text: 'Video'
+                        font_size: root.height * 0.035
+                        bold: True
+                        color: (0.749, 0.659, 0.427, 1) # Default selected
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        on_release:
+                            toggleSettingsViews(None, 'video', root.manager)
+                        on_enter:
+                            Animation(font_size=root.height * 0.04, d=0.1).start(self)
+                        on_leave:
+                            Animation(font_size=root.height * 0.035, d=0.1).start(self)
+                    HoverButton:
+                        id: audioSettingsOption
+                        text: 'Audio'
+                        font_size: root.height * 0.035
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        on_release:
+                            toggleSettingsViews(None, 'audio', root.manager)
+                        on_enter:
+                            Animation(font_size=root.height * 0.04, d=0.1).start(self)
+                        on_leave:
+                            Animation(font_size=root.height * 0.035, d=0.1).start(self)
+                    HoverButton:
+                        id: gameplaySettingsOption
+                        text: 'Gameplay'
+                        font_size: root.height * 0.035
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        on_release:
+                            toggleSettingsViews(None, 'gameplay', root.manager)
+                        on_enter:
+                            Animation(font_size=root.height * 0.04, d=0.1).start(self)
+                        on_leave:
+                            Animation(font_size=root.height * 0.035, d=0.1).start(self)
+                    HoverButton:
+                        id: networkSettingsOption
+                        text: 'Network'
+                        font_size: root.height * 0.035
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        on_release:
+                            toggleSettingsViews(None, 'network', root.manager)
+                        on_enter:
+                            Animation(font_size=root.height * 0.04, d=0.1).start(self)
+                        on_leave:
+                            Animation(font_size=root.height * 0.035, d=0.1).start(self)
+                    HoverButton:
+                        id: supportSettingsOption
+                        text: 'Support'
+                        font_size: root.height * 0.035
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        on_release:
+                            toggleSettingsViews(None, 'support', root.manager)
+                        on_enter:
+                            Animation(font_size=root.height * 0.04, d=0.1).start(self)
+                        on_leave:
+                            Animation(font_size=root.height * 0.035, d=0.1).start(self)
+                    HoverButton:
+                        id: accessibilitySettingsOption
+                        text: 'Accessibility'
+                        font_size: root.height * 0.035
+                        bold: True
+                        color: (1, 1, 1, 1)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        on_release:
+                            toggleSettingsViews(None, 'accessibility', root.manager)
+                        on_enter:
+                            Animation(font_size=root.height * 0.04, d=0.1).start(self)
+                        on_leave:
+                            Animation(font_size=root.height * 0.035, d=0.1).start(self)
+                Widget:
+                    size_hint: (None, 1)
+                    width: max(20, (nav_scroll.width - nav_items.width) / 2)
+
+        FloatLayout:
+            size_hint: (0.94, 0.75)
+            pos_hint: {'center_x': 0.5, 'y': 0.03}
+            canvas.before:
+                Color:
+                    rgba: (0.05, 0.1, 0.15, 0.8)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [30]
+                Color:
+                    rgba: (0, 0, 0, 1)
+                Line:
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, 30)
+                    width: 2
+
+            BoxLayout:
+                id: videoSettings
+                orientation: 'vertical'
+                size_hint: (0.9, 0.9)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                spacing: 20
+                padding: [20, 20]
+                
+                # Section Title
+                Label:
+                    text: 'DISPLAY SETTINGS'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (0.6, 0.6, 0.6, 1)
+                    size_hint_y: None
+                    height: self.texture_size[1] + 20
+                    halign: 'left'
+                    text_size: (self.width, None)
+
+                # Fullscreen Option Row
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Fullscreen Mode'
+                        font_size: root.height * 0.03
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    # Custom Toggle visuals
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            group: 'fullscreen_toggle'
+                            state: 'normal' # Default off
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+                            
+                            on_state: toggleFullscreen(self.state == 'down')
+
+                # Spacer and Footer
+                Widget:
+                
+                Label:
+                    text: 'More settings coming soon...'
+                    font_size: root.height * 0.02
+                    color: (1, 1, 1, 0.3)
+                    size_hint_y: None
+                    height: 30
+            
+            BoxLayout:
+                id: audioSettings
+                orientation: 'vertical'
+                size_hint: (0.9, 0.9)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                spacing: 15
+                padding: [20, 20]
+                opacity: 0 # Start hidden
+                
+                Label:
+                    text: 'AUDIO SETTINGS'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (0.6, 0.6, 0.6, 1)
+                    size_hint_y: None
+                    height: self.texture_size[1] + 10
+                    halign: 'left'
+                    text_size: (self.width, None)
+
+                # Master Volume
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    BoxLayout:
+                        size_hint_y: None
+                        height: 25
+                        Label:
+                            text: 'Master Volume'
+                            bold: True
+                            halign: 'left'
+                            text_size: self.size
+                            color: (1, 1, 1, 1)
+                        Label:
+                            text: f'{int(master_slider.value * 100)}%'
+                            bold: True
+                            halign: 'right'
+                            text_size: self.size
+                            color: (0.749, 0.659, 0.427, 1)
+                            size_hint_x: 0.2
+
+                    Slider:
+                        id: master_slider
+                        min: 0.0
+                        max: 1.0
+                        value: 1.0
+                        cursor_size: (0, 0)
+                        padding: 20
+                        background_width: 0
+                        canvas.before:
+                            Color:
+                                rgba: (0.3, 0.3, 0.3, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.width - self.padding * 2, 4)
+                                radius: [2,]
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.value_pos[0] - (self.x + self.padding), 4)
+                                radius: [2, 0, 0, 2]
+                        canvas.after:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Ellipse:
+                                pos: (self.value_pos[0] - 12.5, self.center_y - 12.5)
+                                size: (25, 25)
+
+                # Background Music Volume
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    BoxLayout:
+                        size_hint_y: None
+                        height: 25
+                        Label:
+                            text: 'Music Volume'
+                            bold: True
+                            halign: 'left'
+                            text_size: self.size
+                            color: (1, 1, 1, 1)
+                        Label:
+                            text: f'{int(music_slider.value * 100)}%'
+                            bold: True
+                            halign: 'right'
+                            text_size: self.size
+                            color: (0.749, 0.659, 0.427, 1)
+                            size_hint_x: 0.2
+
+                    Slider:
+                        id: music_slider
+                        min: 0.0
+                        max: 1.0
+                        value: 0.8
+                        cursor_size: (0, 0)
+                        padding: 20
+                        background_width: 0
+                        canvas.before:
+                            Color:
+                                rgba: (0.3, 0.3, 0.3, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.width - self.padding * 2, 4)
+                                radius: [2,]
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.value_pos[0] - (self.x + self.padding), 4)
+                                radius: [2, 0, 0, 2]
+                        canvas.after:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Ellipse:
+                                pos: (self.value_pos[0] - 12.5, self.center_y - 12.5)
+                                size: (25, 25)
+
+                # Sound Effects Volume
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    BoxLayout:
+                        size_hint_y: None
+                        height: 25
+                        Label:
+                            text: 'SFX Volume'
+                            bold: True
+                            halign: 'left'
+                            text_size: self.size
+                            color: (1, 1, 1, 1)
+                        Label:
+                            text: f'{int(sfx_slider.value * 100)}%'
+                            bold: True
+                            halign: 'right'
+                            text_size: self.size
+                            color: (0.749, 0.659, 0.427, 1)
+                            size_hint_x: 0.2
+
+                    Slider:
+                        id: sfx_slider
+                        min: 0.0
+                        max: 1.0
+                        value: 1.0
+                        cursor_size: (0, 0)
+                        padding: 20
+                        background_width: 0
+                        canvas.before:
+                            Color:
+                                rgba: (0.3, 0.3, 0.3, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.width - self.padding * 2, 4)
+                                radius: [2,]
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.value_pos[0] - (self.x + self.padding), 4)
+                                radius: [2, 0, 0, 2]
+                        canvas.after:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Ellipse:
+                                pos: (self.value_pos[0] - 12.5, self.center_y - 12.5)
+                                size: (25, 25)
+
+                # Player Join/Leave Sound Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Player Join/Leave Sounds'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            state: 'down' # Default on
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+
+                # Audio Output Device
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 20
+                    
+                    Label:
+                        text: 'Output Device'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                        size_hint_x: 0.4
+
+                    Spinner:
+                        id: audioOutputDeviceSpinner
+                        text: 'Default Device'
+                        values: ['Default Device']
+                        background_normal: ''
+                        background_color: (0.1, 0.1, 0.1, 1)
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        option_cls: 'SpinnerOption'
+                        canvas.before:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Line:
+                                rounded_rectangle: (self.x, self.y, self.width, self.height, 6)
+                                width: 1.5
+                
+                # Spacer
+                Widget:
+            
+            Label:
+                id: gameplaySettingsLabel
+                text: 'Gameplay settings options go here'
+                font_size: root.height * 0.04
+                color: (1, 1, 1, 1)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                
+            Label:
+                id: networkSettingsLabel
+                text: 'Network settings options go here'
+                font_size: root.height * 0.04
+                color: (1, 1, 1, 1)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                
+            Label:
+                id: supportSettingsLabel
+                text: 'Support settings options go here'
+                font_size: root.height * 0.04
+                color: (1, 1, 1, 1)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                
+            Label:
+                id: accessibilitySettingsLabel
+                text: 'Accessibility settings options go here'
+                font_size: root.height * 0.04
+                color: (1, 1, 1, 1)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
