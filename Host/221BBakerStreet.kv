@@ -3,6 +3,10 @@
 #:import switchScreen host.switchScreen
 #:import toggleSettingsViews host.toggleSettingsViews
 #:import toggleFullscreen host.toggleFullscreen
+#:import changeMasterVolume host.changeMasterVolume
+#:import exportLogs host.exportLogs
+#:import checkForUpdates host.checkForUpdates
+#:import resetSettings host.resetSettings
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 ScreenManager:
     transition: NoTransition()
@@ -512,6 +516,7 @@ ScreenManager:
                         cursor_size: (0, 0)
                         padding: 20
                         background_width: 0
+                        on_value: changeMasterVolume(self.value)
                         canvas.before:
                             Color:
                                 rgba: (0.3, 0.3, 0.3, 1)
@@ -735,30 +740,596 @@ ScreenManager:
                 # Spacer
                 Widget:
             
-            Label:
-                id: gameplaySettingsLabel
-                text: 'Gameplay settings options go here'
-                font_size: root.height * 0.04
-                color: (1, 1, 1, 1)
+            BoxLayout:
+                id: gameplaySettings
+                orientation: 'vertical'
+                size_hint: (0.9, 0.9)
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                spacing: 15
+                padding: [20, 20]
+                opacity: 0 # Start hidden
                 
-            Label:
-                id: networkSettingsLabel
-                text: 'Network settings options go here'
-                font_size: root.height * 0.04
-                color: (1, 1, 1, 1)
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                Label:
+                    text: 'GAMEPLAY SETTINGS'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (0.6, 0.6, 0.6, 1)
+                    size_hint_y: None
+                    height: self.texture_size[1] + 10
+                    halign: 'left'
+                    text_size: (self.width, None)
+
+                # Max Players Slider
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    BoxLayout:
+                        size_hint_y: None
+                        height: 25
+                        Label:
+                            text: 'Max Players'
+                            bold: True
+                            halign: 'left'
+                            text_size: self.size
+                            color: (1, 1, 1, 1)
+                        Label:
+                            text: str(int(max_players_slider.value))
+                            bold: True
+                            halign: 'right'
+                            text_size: self.size
+                            color: (0.749, 0.659, 0.427, 1)
+                            size_hint_x: 0.2
+
+                    Slider:
+                        id: max_players_slider
+                        min: 2
+                        max: 8
+                        step: 1
+                        value: 6
+                        cursor_size: (0, 0)
+                        padding: 20
+                        background_width: 0
+                        canvas.before:
+                            Color:
+                                rgba: (0.3, 0.3, 0.3, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.width - self.padding * 2, 4)
+                                radius: [2,]
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            RoundedRectangle:
+                                pos: (self.x + self.padding, self.center_y - 2)
+                                size: (self.value_pos[0] - (self.x + self.padding), 4)
+                                radius: [2, 0, 0, 2]
+                        canvas.after:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Ellipse:
+                                pos: (self.value_pos[0] - 12.5, self.center_y - 12.5)
+                                size: (25, 25)
+
+                # Autostart Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Autostart when full'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            state: 'normal'
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+
+                # Auto kick Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Auto kick inactive'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            state: 'down'
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+
+                # Lock Room Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Lock room on start'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            state: 'down'
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
                 
-            Label:
-                id: supportSettingsLabel
-                text: 'Support settings options go here'
-                font_size: root.height * 0.04
-                color: (1, 1, 1, 1)
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                # Spacer
+                Widget:
                 
-            Label:
-                id: accessibilitySettingsLabel
-                text: 'Accessibility settings options go here'
-                font_size: root.height * 0.04
-                color: (1, 1, 1, 1)
+            BoxLayout:
+                id: networkSettings
+                orientation: 'vertical'
+                size_hint: (0.9, 0.9)
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                spacing: 15
+                padding: [20, 20]
+                opacity: 0 # Start hidden
+                
+                Label:
+                    text: 'NETWORK SETTINGS'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (0.6, 0.6, 0.6, 1)
+                    size_hint_y: None
+                    height: self.texture_size[1] + 10
+                    halign: 'left'
+                    text_size: (self.width, None)
+
+                # Host IP/Domain Override
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    Label:
+                        text: 'Host IP/Domain Override'
+                        bold: True
+                        halign: 'left'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                        size_hint_y: None
+                        height: 25
+
+                    TextInput:
+                        id: host_ip_input
+                        hint_text: 'Enter IP or Domain'
+                        multiline: False
+                        background_color: (0, 0, 0, 0)
+                        foreground_color: (0.749, 0.659, 0.427, 1)
+                        cursor_color: (0.749, 0.659, 0.427, 1)
+                        font_size: self.height * 0.5
+                        padding: [0, self.height / 2.0 - (self.line_height / 2.0) * 1.1, 0, 0] # center vertically
+                        canvas.after:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Line:
+                                points: [self.x, self.y, self.x + self.width, self.y]
+                                width: 1
+
+                # HTTPS/HTTP Mode Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Protocol Mode'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'HTTPS' if self.state == 'down' else 'HTTP'
+                            state: 'normal' # Default HTTP
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+
+                # Admin Password
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    Label:
+                        text: 'Admin Password'
+                        bold: True
+                        halign: 'left'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                        size_hint_y: None
+                        height: 25
+
+                    TextInput:
+                        id: admin_password_input
+                        hint_text: 'Enter Password'
+                        multiline: False
+                        password: True
+                        background_color: (0, 0, 0, 0)
+                        foreground_color: (0.749, 0.659, 0.427, 1)
+                        cursor_color: (0.749, 0.659, 0.427, 1)
+                        font_size: self.height * 0.5
+                        padding: [0, self.height / 2.0 - (self.line_height / 2.0) * 1.1, 0, 0] # center vertically
+                        canvas.after:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Line:
+                                points: [self.x, self.y, self.x + self.width, self.y]
+                                width: 1
+
+                # Spacer
+                Widget:
+                
+            BoxLayout:
+                id: supportSettings
+                orientation: 'vertical'
+                size_hint: (0.9, 0.9)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                spacing: 15
+                padding: [20, 20]
+                opacity: 0 # Start hidden
+                
+                Label:
+                    text: 'SUPPORT SETTINGS'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (0.6, 0.6, 0.6, 1)
+                    size_hint_y: None
+                    height: self.texture_size[1] + 10
+                    halign: 'left'
+                    text_size: (self.width, None)
+
+                # Export Logs Button
+                HoverButton:
+                    text: 'Export Logs'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (1, 1, 1, 1)
+                    background_normal: ''
+                    background_color: (0.2, 0.2, 0.2, 1)
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    on_release: exportLogs()
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+
+                # Check for Updates Button
+                HoverButton:
+                    text: 'Check for Updates'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (1, 1, 1, 1)
+                    background_normal: ''
+                    background_color: (0.2, 0.2, 0.2, 1)
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    on_release: checkForUpdates()
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+
+                # Reset Settings Button
+                HoverButton:
+                    text: 'Reset All Settings'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (1, 1, 1, 1)
+                    background_normal: ''
+                    background_color: (0.6, 0.2, 0.2, 0.8) # Reddish warning color
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    on_release: resetSettings()
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+
+                # Spacer
+                Widget:
+                    size_hint_y: 0.1
+
+                # Developers Section
+                Label:
+                    text: 'Developers:'
+                    font_size: root.height * 0.03
+                    bold: True
+                    color: (0.749, 0.659, 0.427, 1)
+                    size_hint_y: None
+                    height: 40
+                
+                Label:
+                    text: 'dev1@example.com\ndev2@example.com'
+                    font_size: root.height * 0.025
+                    color: (0.8, 0.8, 0.8, 1)
+                    size_hint_y: None
+                    height: 60
+                    halign: 'center'
+
+                # Flexible Spacer
+                Widget:
+                
+            BoxLayout:
+                id: accessibilitySettings
+                orientation: 'vertical'
+                size_hint: (0.9, 0.9)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                spacing: 15
+                padding: [20, 20]
+                opacity: 0 # Start hidden
+                
+                Label:
+                    text: 'ACCESSIBILITY SETTINGS'
+                    font_size: root.height * 0.025
+                    bold: True
+                    color: (0.6, 0.6, 0.6, 1)
+                    size_hint_y: None
+                    height: self.texture_size[1] + 10
+                    halign: 'left'
+                    text_size: (self.width, None)
+
+                # Font Selector
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.1
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 10]
+                    spacing: 5
+                    
+                    Label:
+                        text: 'Font Selector'
+                        bold: True
+                        halign: 'left'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                        size_hint_y: None
+                        height: 25
+
+                    Spinner:
+                        id: font_spinner
+                        text: 'Roboto'
+                        values: ['Roboto', 'Arial', 'Times New Roman', 'Courier New', 'Verdana', 'Helvetica', 'Tahoma', 'Trebuchet MS', 'Impact', 'Georgia', 'Garamond', 'Comic Sans MS', 'Segoe UI', 'Open Sans', 'Lato', 'Montserrat']
+                        background_normal: ''
+                        background_color: (0.1, 0.1, 0.1, 1)
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        option_cls: 'SpinnerOption'
+                        canvas.before:
+                            Color:
+                                rgba: (0.749, 0.659, 0.427, 1)
+                            Line:
+                                rounded_rectangle: (self.x, self.y, self.width, self.height, 6)
+                                width: 1.5
+
+                # Subtitles Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Subtitles'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            state: 'normal' # Default OFF
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+
+                # Visual Sound Indicators Toggle
+                BoxLayout:
+                    size_hint_y: None
+                    height: root.height * 0.08
+                    canvas.before:
+                        Color:
+                            rgba: (1, 1, 1, 0.05)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    padding: [20, 0]
+                    
+                    Label:
+                        text: 'Visual Sound Indicators'
+                        bold: True
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                        color: (1, 1, 1, 1)
+                    
+                    BoxLayout:
+                        size_hint_x: None
+                        width: 120
+                        padding: [10, 10]
+                        ToggleButton:
+                            text: 'ON' if self.state == 'down' else 'OFF'
+                            state: 'normal' # Default OFF
+                            background_normal: ''
+                            background_down: ''
+                            background_color: (0.749, 0.659, 0.427, 1) if self.state == 'down' else (0.2, 0.2, 0.2, 1)
+                            color: (1, 1, 1, 1) if self.state == 'down' else (0.7, 0.7, 0.7, 1)
+                            bold: True
+                            canvas.before:
+                                Color:
+                                    rgba: self.background_color
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [6,]
+
+                # Spacer
+                Widget:

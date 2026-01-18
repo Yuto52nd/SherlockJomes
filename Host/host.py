@@ -12,6 +12,12 @@ from kivy.clock import Clock
 from kivy.uix.textinput import TextInput
 import threading
 import requests
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities
+
+_device = AudioUtilities.GetSpeakers()
+_endpoint_volume = _device.EndpointVolume
 
 # Global reference to root widget
 root_widget = None
@@ -100,99 +106,52 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
         return
     settingsScreen = manager.get_screen('settingsScreen')
 
-    # Settings Nav Bar Content
-    if target == "video":
-        settingsScreen.ids.videoSettingsOption.color = (0.749, 0.659, 0.427, 1)
-        settingsScreen.ids.audioSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.gameplaySettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.networkSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.supportSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.accessibilitySettingsOption.color = (1, 1, 1, 1)
-    elif target == "audio":
-        settingsScreen.ids.videoSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.audioSettingsOption.color = (0.749, 0.659, 0.427, 1)
-        settingsScreen.ids.gameplaySettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.networkSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.supportSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.accessibilitySettingsOption.color = (1, 1, 1, 1)
-    elif target == "gameplay":
-        settingsScreen.ids.videoSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.audioSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.gameplaySettingsOption.color = (0.749, 0.659, 0.427, 1)
-        settingsScreen.ids.networkSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.supportSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.accessibilitySettingsOption.color = (1, 1, 1, 1)
-    elif target == "network":
-        settingsScreen.ids.videoSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.audioSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.gameplaySettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.networkSettingsOption.color = (0.749, 0.659, 0.427, 1)
-        settingsScreen.ids.supportSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.accessibilitySettingsOption.color = (1, 1, 1, 1)
-    elif target == "support":
-        settingsScreen.ids.videoSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.audioSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.gameplaySettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.networkSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.supportSettingsOption.color = (0.749, 0.659, 0.427, 1)
-        settingsScreen.ids.accessibilitySettingsOption.color = (1, 1, 1, 1)
-    elif target == "accessibility":
-        settingsScreen.ids.videoSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.audioSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.gameplaySettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.networkSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.supportSettingsOption.color = (1, 1, 1, 1)
-        settingsScreen.ids.accessibilitySettingsOption.color = (0.749, 0.659, 0.427, 1)
-    
-    # Settings View Content
-    if target == "video":
-        settingsScreen.ids.videoSettings.opacity = 1
-        settingsScreen.ids.audioSettings.opacity = 0
-        settingsScreen.ids.gameplaySettingsLabel.opacity = 0
-        settingsScreen.ids.networkSettingsLabel.opacity = 0
-        settingsScreen.ids.supportSettingsLabel.opacity = 0
-        settingsScreen.ids.accessibilitySettingsLabel.opacity = 0
-    elif target == "audio":
-        settingsScreen.ids.videoSettings.opacity = 0
-        settingsScreen.ids.audioSettings.opacity = 1
-        settingsScreen.ids.gameplaySettingsLabel.opacity = 0
-        settingsScreen.ids.networkSettingsLabel.opacity = 0
-        settingsScreen.ids.supportSettingsLabel.opacity = 0
-        settingsScreen.ids.accessibilitySettingsLabel.opacity = 0
-    elif target == "gameplay":
-        settingsScreen.ids.videoSettings.opacity = 0
-        settingsScreen.ids.audioSettings.opacity = 0
-        settingsScreen.ids.gameplaySettingsLabel.opacity = 1
-        settingsScreen.ids.networkSettingsLabel.opacity = 0
-        settingsScreen.ids.supportSettingsLabel.opacity = 0
-        settingsScreen.ids.accessibilitySettingsLabel.opacity = 0
-    elif target == "network":
-        settingsScreen.ids.videoSettings.opacity = 0
-        settingsScreen.ids.audioSettings.opacity = 0
-        settingsScreen.ids.gameplaySettingsLabel.opacity = 0
-        settingsScreen.ids.networkSettingsLabel.opacity = 1
-        settingsScreen.ids.supportSettingsLabel.opacity = 0
-        settingsScreen.ids.accessibilitySettingsLabel.opacity = 0
-    elif target == "support":
-        settingsScreen.ids.videoSettings.opacity = 0
-        settingsScreen.ids.audioSettings.opacity = 0
-        settingsScreen.ids.gameplaySettingsLabel.opacity = 0
-        settingsScreen.ids.networkSettingsLabel.opacity = 0
-        settingsScreen.ids.supportSettingsLabel.opacity = 1
-        settingsScreen.ids.accessibilitySettingsLabel.opacity = 0
-    elif target == "accessibility":
-        settingsScreen.ids.videoSettings.opacity = 0
-        settingsScreen.ids.audioSettings.opacity = 0
-        settingsScreen.ids.gameplaySettingsLabel.opacity = 0
-        settingsScreen.ids.networkSettingsLabel.opacity = 0
-        settingsScreen.ids.supportSettingsLabel.opacity = 0
-        settingsScreen.ids.accessibilitySettingsLabel.opacity = 1
+    # Define all settings categories
+    categories = ["video", "audio", "gameplay", "network", "support", "accessibility"]
+
+    for category in categories:
+        # Update Nav Bar Colors
+        try:
+            nav_option_id = f"{category}SettingsOption"
+            if category == target:
+                settingsScreen.ids[nav_option_id].color = (0.749, 0.659, 0.427, 1)
+            else:
+                settingsScreen.ids[nav_option_id].color = (1, 1, 1, 1)
+        except KeyError:
+            pass # Handle potential missing IDs gracefully
+
+        # Update Content Visibility and Interactivity
+        try:
+            content_id = f"{category}Settings"
+            widget = settingsScreen.ids[content_id]
+            if category == target:
+                widget.opacity = 1
+                widget.disabled = False
+                widget.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+            else:
+                widget.opacity = 0
+                widget.disabled = True
+                widget.pos_hint = {'center_x': 10, 'center_y': 10} # Move off-screen
+        except KeyError:
+            pass # Handle potential missing IDs gracefully
 
     if target == "audio":
         getAudioDevices(screen_manager)
 
 def toggleFullscreen(enable):
     Window.fullscreen = enable
+
+def changeMasterVolume(percent):
+    _endpoint_volume.SetMasterVolumeLevelScalar(float(percent), None)
+
+def exportLogs():
+    print("Exporting logs...")
+
+def checkForUpdates():
+    print("Checking for updates...")
+
+def resetSettings():
+    print("Resetting settings...")
 
 def getAudioDevices(screen_manager=None):
     try:
