@@ -1,0 +1,310 @@
+[2026-01-19 14:54:20] Font 'CENTURY' loaded from system fonts
+[2026-01-19 14:57:37] Font 'CENTURY' loaded from system fonts
+[2026-01-19 14:57:47] Exporting logs...
+[2026-01-19 14:57:47] Logs exported successfully to C:\Users\Benjamin Godfrey\Downloads\host_log_20260119_145747.txt
+[2026-01-19 15:00:58] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:01:06] Exporting logs...
+[2026-01-19 15:01:06] Logs exported successfully to C:\Users\Benjamin Godfrey\Downloads\host_log_20260119_150106.txt
+[2026-01-19 15:02:03] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:02:08] Exporting logs...
+[2026-01-19 15:02:08] Logs exported successfully to C:\Users\Benjamin Godfrey\Downloads\host_log_20260119_150208.txt
+[2026-01-19 15:02:56] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:03:05] Exporting logs...
+[2026-01-19 15:03:05] Logs exported successfully to C:\Users\Benjamin Godfrey\Downloads\host_log_20260119_150305.txt
+[2026-01-19 15:04:07] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:04:11] Exporting logs...
+[2026-01-19 15:04:11] Logs exported successfully to C:\Users\Benjamin Godfrey\Downloads\host_log_20260119_150411.txt
+[2026-01-19 15:05:30] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:05:56] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:06:48] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:06:57] Exporting logs...
+[2026-01-19 15:06:57] Logs exported successfully to C:\Users\Benjamin Godfrey\Downloads\host_log_20260119_150657.txt
+[2026-01-19 15:09:00] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:09:08] Resetting settings...
+[2026-01-19 15:09:12] Resetting settings...
+[2026-01-19 15:09:26] Font 'Century' loaded from system fonts
+[2026-01-19 15:09:30] Resetting settings...
+[2026-01-19 15:09:55] Font 'Century' loaded from system fonts
+[2026-01-19 15:10:01] Resetting settings...
+[2026-01-19 15:10:12] Checking for updates...
+[2026-01-19 15:10:30] Font 'Century' loaded from system fonts
+[2026-01-19 15:10:48] Checking for updates...
+[2026-01-19 15:11:32] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:12:29] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:21:13] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:21:13] Fullscreen mode enabled on startup
+[2026-01-19 15:21:24] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:21:24] Fullscreen mode enabled on startup
+[2026-01-19 15:23:05] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:23:05] Fullscreen mode enabled on startup
+[2026-01-19 15:23:10] Initialized 576 map squares
+[2026-01-19 15:24:05] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:24:05] Fullscreen mode enabled on startup
+[2026-01-19 15:24:07] Initialized 576 map squares
+[2026-01-19 15:27:53] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:27:53] Fullscreen mode enabled on startup
+[2026-01-19 15:27:55] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:27:56] Initialized 576 map squares from original.json
+[2026-01-19 15:30:05] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:30:05] Fullscreen mode enabled on startup
+[2026-01-19 15:30:07] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:30:07] Initialized 576 map squares from original.json
+[2026-01-19 15:30:25] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:30:25] Fullscreen mode enabled on startup
+[2026-01-19 15:30:27] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:30:27] Initialized 576 map squares from original.json
+[2026-01-19 15:31:16] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:31:16] Fullscreen mode enabled on startup
+[2026-01-19 15:31:17] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:31:17] Initialized 576 map squares from original.json
+[2026-01-19 15:33:03] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:33:03] Fullscreen mode enabled on startup
+[2026-01-19 15:33:04] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:33:05] Initialized 576 map squares from original.json
+[2026-01-19 15:33:52] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:33:52] Fullscreen mode enabled on startup
+[2026-01-19 15:33:53] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:33:54] Initialized 576 map squares from original.json
+[2026-01-19 15:36:27] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:36:27] Fullscreen mode enabled on startup
+[2026-01-19 15:36:28] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:36:29] Initialized 576 map squares from original.json
+[2026-01-19 15:37:59] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:37:59] Fullscreen mode enabled on startup
+[2026-01-19 15:38:01] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\..\Maps\original.json
+[2026-01-19 15:38:01] Error loading map original.json: [Errno 2] No such file or directory: 'C:\\Users\\Benjamin Godfrey\\Documents\\Projects\\221B Baker Street\\Host\\..\\Maps\\original.json'
+[2026-01-19 15:38:01] Initialized 576 map squares from original.json
+[2026-01-19 15:38:01] Color distribution: {0: 576}
+[2026-01-19 15:39:33] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:39:33] Fullscreen mode enabled on startup
+[2026-01-19 15:39:35] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:39:35] Loaded map: original.json
+[2026-01-19 15:39:35] Map data type: <class 'dict'>, Length: N/A
+[2026-01-19 15:39:35] Initialized 576 map squares from original.json
+[2026-01-19 15:39:35] Color distribution: {0: 576}
+[2026-01-19 15:40:58] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:40:58] Fullscreen mode enabled on startup
+[2026-01-19 15:41:07] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:41:07] Loaded map: original.json
+[2026-01-19 15:41:07] Map data type: <class 'list'>, Length: 24
+[2026-01-19 15:41:07] First row sample: [0, 0, 0, 0, 0]
+[2026-01-19 15:41:07] Initialized 576 map squares from original.json
+[2026-01-19 15:41:07] Color distribution: {0: 542, 1: 34}
+[2026-01-19 15:46:02] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:46:47] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:46:49] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:46:49] Loaded map: original.json
+[2026-01-19 15:46:49] Map data type: <class 'list'>, Length: 24
+[2026-01-19 15:46:49] First row sample: [0, 0, 0, 0, 0]
+[2026-01-19 15:46:49] Initialized 576 map squares from original.json
+[2026-01-19 15:46:49] Color distribution: {0: 542, 1: 23, 13: 11}
+[2026-01-19 15:48:59] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:49:05] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:49:05] Loaded map: original.json
+[2026-01-19 15:49:05] Map data type: <class 'list'>, Length: 24
+[2026-01-19 15:49:05] First row sample: [0, 0, 0, 0, 0]
+[2026-01-19 15:49:05] Initialized 576 map squares from original.json
+[2026-01-19 15:49:05] Color distribution: {0: 504, 3: 38, 1: 23, 13: 11}
+[2026-01-19 15:50:47] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:50:48] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:50:48] Loaded map: original.json
+[2026-01-19 15:50:48] Map data type: <class 'list'>, Length: 24
+[2026-01-19 15:50:48] First row sample: [0, 0, 0, 0, 0]
+[2026-01-19 15:50:48] Initialized 576 map squares from original.json
+[2026-01-19 15:50:48] Color distribution: {0: 504, 3: 38, 1: 23, 13: 11}
+[2026-01-19 15:58:39] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:58:40] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:58:40] Loaded map: original.json
+[2026-01-19 15:58:40] Map data type: <class 'list'>, Length: 24
+[2026-01-19 15:58:40] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 15:58:41] Initialized 576 map squares from original.json
+[2026-01-19 15:58:41] Color distribution: {9: 28, 0: 432, 1: 52, 8: 15, 3: 38, 14: 11}
+[2026-01-19 15:59:24] Font 'CENTURY' loaded from system fonts
+[2026-01-19 15:59:25] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 15:59:25] Loaded map: original.json
+[2026-01-19 15:59:25] Map data type: <class 'list'>, Length: 24
+[2026-01-19 15:59:25] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 15:59:26] Initialized 576 map squares from original.json
+[2026-01-19 15:59:26] Color distribution: {9: 28, 2: 11, 1: 52, 8: 15, 0: 421, 3: 38, 14: 11}
+[2026-01-19 16:02:16] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:02:18] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:02:18] Loaded map: original.json
+[2026-01-19 16:02:18] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:02:18] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:02:18] Initialized 576 map squares from original.json
+[2026-01-19 16:02:18] Color distribution: {9: 28, 2: 19, 1: 77, 8: 15, 0: 368, 12: 20, 3: 38, 14: 11}
+[2026-01-19 16:03:02] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:03:04] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:03:04] Loaded map: original.json
+[2026-01-19 16:03:04] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:03:04] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:03:04] Initialized 576 map squares from original.json
+[2026-01-19 16:03:04] Color distribution: {9: 28, 2: 24, 1: 77, 8: 15, 0: 363, 12: 20, 3: 38, 14: 11}
+[2026-01-19 16:05:07] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:05:08] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:05:09] Loaded map: original.json
+[2026-01-19 16:05:09] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:05:09] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:05:09] Initialized 576 map squares from original.json
+[2026-01-19 16:05:09] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 333, 12: 20, 3: 38, 5: 25, 14: 11}
+[2026-01-19 16:05:27] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:05:29] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:05:29] Loaded map: original.json
+[2026-01-19 16:05:29] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:05:29] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:05:29] Initialized 576 map squares from original.json
+[2026-01-19 16:05:29] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 331, 12: 20, 3: 38, 5: 27, 14: 11}
+[2026-01-19 16:09:30] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:10:19] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:10:19] Loaded map: original.json
+[2026-01-19 16:10:19] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:10:19] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:10:19] Initialized 576 map squares from original.json
+[2026-01-19 16:10:19] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 283, 12: 20, 3: 38, 10: 50, 5: 25, 14: 11}
+[2026-01-19 16:10:41] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:10:43] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:10:43] Loaded map: original.json
+[2026-01-19 16:10:43] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:10:43] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:10:43] Initialized 576 map squares from original.json
+[2026-01-19 16:10:43] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 280, 12: 20, 3: 38, 10: 53, 5: 25, 14: 11}
+[2026-01-19 16:10:53] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:10:56] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:10:56] Loaded map: original.json
+[2026-01-19 16:10:56] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:10:56] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:10:56] Initialized 576 map squares from original.json
+[2026-01-19 16:10:56] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 279, 12: 20, 3: 38, 10: 54, 5: 25, 14: 11}
+[2026-01-19 16:12:00] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:12:07] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:12:07] Loaded map: original.json
+[2026-01-19 16:12:07] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:12:07] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:12:08] Initialized 576 map squares from original.json
+[2026-01-19 16:12:08] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 280, 12: 20, 3: 38, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:14:43] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:14:55] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:14:55] Loaded map: original.json
+[2026-01-19 16:14:55] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:14:55] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:14:55] Initialized 576 map squares from original.json
+[2026-01-19 16:14:55] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 250, 12: 20, 3: 38, 13: 30, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:15:47] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:15:48] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:15:48] Loaded map: original.json
+[2026-01-19 16:15:48] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:15:48] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:15:49] Initialized 576 map squares from original.json
+[2026-01-19 16:15:49] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 250, 12: 20, 3: 38, 13: 30, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:16:00] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:16:02] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:16:02] Loaded map: original.json
+[2026-01-19 16:16:02] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:16:02] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:16:02] Initialized 576 map squares from original.json
+[2026-01-19 16:16:02] Color distribution: {9: 28, 2: 29, 1: 77, 8: 15, 0: 246, 12: 20, 3: 38, 13: 34, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:18:29] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:18:34] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:18:34] Loaded map: original.json
+[2026-01-19 16:18:34] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:18:34] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:18:34] Initialized 576 map squares from original.json
+[2026-01-19 16:18:34] Color distribution: {9: 28, 2: 29, 1: 112, 8: 15, 0: 211, 12: 20, 3: 38, 13: 34, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:20:55] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:20:57] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:20:57] Loaded map: original.json
+[2026-01-19 16:20:57] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:20:57] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:20:57] Initialized 576 map squares from original.json
+[2026-01-19 16:20:57] Color distribution: {9: 28, 2: 29, 1: 111, 8: 15, 0: 212, 12: 20, 3: 38, 13: 34, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:22:31] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:22:32] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:22:32] Loaded map: original.json
+[2026-01-19 16:22:32] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:22:32] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:22:32] Initialized 576 map squares from original.json
+[2026-01-19 16:22:32] Color distribution: {9: 28, 2: 29, 1: 111, 8: 15, 0: 184, 12: 48, 3: 38, 13: 34, 10: 54, 5: 24, 14: 11}
+[2026-01-19 16:24:47] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:24:49] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:24:49] Loaded map: original.json
+[2026-01-19 16:24:49] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:24:49] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:24:49] Initialized 576 map squares from original.json
+[2026-01-19 16:24:49] Color distribution: {9: 28, 2: 29, 1: 111, 8: 15, 0: 138, 12: 47, 3: 38, 5: 71, 13: 34, 10: 54, 14: 11}
+[2026-01-19 16:25:52] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:25:53] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:25:53] Loaded map: original.json
+[2026-01-19 16:25:53] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:25:53] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:25:54] Initialized 576 map squares from original.json
+[2026-01-19 16:25:54] Color distribution: {9: 28, 2: 29, 1: 111, 8: 15, 0: 138, 12: 47, 3: 38, 5: 76, 13: 34, 10: 49, 14: 11}
+[2026-01-19 16:26:13] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:26:15] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:26:15] Loaded map: original.json
+[2026-01-19 16:26:15] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:26:15] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:26:15] Initialized 576 map squares from original.json
+[2026-01-19 16:26:15] Color distribution: {9: 28, 2: 29, 1: 111, 8: 15, 0: 141, 12: 47, 3: 38, 5: 76, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:26:40] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:26:41] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:26:41] Loaded map: original.json
+[2026-01-19 16:26:41] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:26:41] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:26:42] Initialized 576 map squares from original.json
+[2026-01-19 16:26:42] Color distribution: {9: 28, 2: 29, 1: 111, 8: 15, 0: 139, 12: 47, 3: 38, 5: 78, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:27:15] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:27:17] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:27:17] Loaded map: original.json
+[2026-01-19 16:27:17] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:27:17] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:27:18] Initialized 576 map squares from original.json
+[2026-01-19 16:27:18] Color distribution: {9: 28, 2: 36, 1: 111, 8: 15, 0: 139, 12: 47, 3: 38, 5: 71, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:34:42] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:34:43] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:34:43] Loaded map: original.json
+[2026-01-19 16:34:43] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:34:43] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:34:44] Initialized 576 map squares from original.json
+[2026-01-19 16:34:44] Color distribution: {9: 28, 2: 36, 1: 111, 8: 15, 0: 139, 12: 47, 3: 38, 5: 71, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:35:31] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:35:32] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:35:32] Loaded map: original.json
+[2026-01-19 16:35:32] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:35:32] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:35:32] Initialized 576 map squares from original.json
+[2026-01-19 16:35:32] Color distribution: {9: 28, 2: 36, 1: 111, 8: 15, 0: 139, 12: 47, 3: 38, 5: 71, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:36:09] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:36:10] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:36:10] Loaded map: original.json
+[2026-01-19 16:36:10] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:36:10] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:36:10] Initialized 576 map squares from original.json
+[2026-01-19 16:36:10] Color distribution: {9: 28, 2: 36, 1: 111, 8: 15, 0: 139, 12: 47, 3: 38, 5: 71, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:37:11] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:37:12] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:37:12] Loaded map: original.json
+[2026-01-19 16:37:12] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:37:12] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:37:12] Initialized 576 map squares from original.json
+[2026-01-19 16:37:12] Color distribution: {9: 28, 2: 36, 1: 111, 8: 15, 0: 139, 12: 47, 3: 38, 5: 71, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:41:48] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:41:50] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:41:50] Loaded map: original.json
+[2026-01-19 16:41:50] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:41:50] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:41:50] Initialized 576 map squares from original.json
+[2026-01-19 16:41:50] Color distribution: {9: 27, 2: 36, 1: 111, 8: 15, 0: 140, 12: 47, 3: 38, 5: 71, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:42:36] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:42:38] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:42:38] Loaded map: original.json
+[2026-01-19 16:42:38] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:42:38] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:42:38] Initialized 576 map squares from original.json
+[2026-01-19 16:42:38] Color distribution: {9: 27, 2: 36, 1: 111, 8: 15, 0: 141, 12: 47, 3: 38, 5: 70, 13: 34, 10: 46, 14: 11}
+[2026-01-19 16:44:47] Font 'CENTURY' loaded from system fonts
+[2026-01-19 16:44:49] Attempting to load map from: C:\Users\Benjamin Godfrey\Documents\Projects\221B Baker Street\Host\Maps\original.json
+[2026-01-19 16:44:49] Loaded map: original.json
+[2026-01-19 16:44:49] Map data type: <class 'list'>, Length: 24
+[2026-01-19 16:44:49] First row sample: [9, 9, 9, 9, 9]
+[2026-01-19 16:44:49] Initialized 576 map squares from original.json
+[2026-01-19 16:44:49] Color distribution: {9: 27, 2: 36, 1: 110, 8: 15, 0: 143, 12: 46, 3: 38, 5: 70, 13: 34, 10: 46, 14: 11}

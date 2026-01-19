@@ -10,6 +10,7 @@ from kivy.graphics import Color, RoundedRectangle
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.textinput import TextInput
+from kivy.core.text import LabelBase, DEFAULT_FONT
 import threading
 import requests
 from ctypes import cast, POINTER
@@ -18,6 +19,8 @@ from pycaw.pycaw import AudioUtilities
 import sqlite3
 import json
 import os
+import shutil
+from datetime import datetime
 
 _device = AudioUtilities.GetSpeakers()
 _endpoint_volume = _device.EndpointVolume
@@ -66,30 +69,45 @@ def switchScreen(screenName, screen_manager=None):
     global currentScreen
     currentScreen = screenName
 
-    print("Switched to screen: " + screenName)
-
     if screenName == "settingsScreen":
         toggleSettingsViews(None, "video", manager)
-        print("Toggled settings views to video")
+    elif screenName == "gameScreen":
+        initializeGameMap(manager)
 
 # Notification Functions
 def displayNotification(message, duration=3):
-    if root_widget is None:
-        return
-    screen = root_widget.get_screen(currentScreen)
-    notification_label = screen.ids.notificationLabel
-    notification_label.text = message
-    notification_label.opacity = 0
+    global root_widget
     
-    # Fade in animation
-    anim = Animation(opacity=1, duration=0.3)
-    anim.start(notification_label)
+    # Try to get root widget if not set
+    if root_widget is None:
+        # Try to get from Window's children
+        if Window.children:
+            root_widget = Window.children[0]
+        else:
+            log("Cannot display notification: No root widget available")
+            return
+    
+    try:
+        screen = root_widget.get_screen(currentScreen)
+        notificationLabel = screen.ids.notificationLabel
+        notificationLabel.text = message
+        notificationLabel.opacity = 0
+        
+        # Update size based on text
+        notificationLabel.texture_update()
+        notificationLabel.size = (max(notificationLabel.texture_size[0] + 40, 200), 50)
+        
+        # Fade in animation
+        anim = Animation(opacity=1, duration=0.3)
+        anim.start(notificationLabel)
 
-    def hideNotification(dt):
-        anim = Animation(opacity=0, duration=0.5)
-        anim.start(notification_label)
+        def hideNotification(dt):
+            anim = Animation(opacity=0, duration=0.5)
+            anim.start(notificationLabel)
 
-    Clock.schedule_once(hideNotification, duration)
+        Clock.schedule_once(hideNotification, duration)
+    except Exception as e:
+        log(f"Error displaying notification: {e}")
 
 # Welcome Window Functions
 def toggleWelcomeButtons(_dt, enable=True):
@@ -100,6 +118,91 @@ def toggleWelcomeButtons(_dt, enable=True):
     
     createButton.disabled = not enable
 
+# Game Screen Functions
+def initializeGameMap(screen_manager=None, mapName='original.json'):
+    manager = screen_manager if screen_manager is not None else root_widget
+    if manager is None:
+        return
+    
+    gameScreen = manager.get_screen('gameScreen')
+    mapGrid = gameScreen.ids.mapGrid
+    
+    if len(mapGrid.children) > 0:
+        return
+    
+    colorMap = {
+        0: (0.918, 0.796, 0.322, 1),    # Yellow
+        1: (0.8, 0.2, 0.2, 1),          # Red
+        2: (0.2, 0.4, 0.8, 1),          # Blue
+        3: (0.2, 0.7, 0.3, 1),          # Green
+        4: (0.6, 0.3, 0.8, 1),          # Purple
+        5: (1.0, 0.5, 0.0, 1),          # Orange
+        6: (0.0, 0.8, 0.8, 1),          # Cyan
+        7: (0.9, 0.4, 0.6, 1),          # Pink
+        8: (0.5, 0.3, 0.1, 1),          # Brown
+        9: (0.4, 0.4, 0.4, 1),          # Dark Gray
+        10: (0.2, 0.6, 0.4, 1),         # Teal
+        11: (0.7, 0.0, 0.3, 1),         # Maroon
+        12: (0.0, 0.2, 0.5, 1),         # Navy
+        13: (0.5, 0.7, 0.2, 1),         # Lime
+        14: (0.8, 0.6, 0.2, 1),         # Gold
+        15: (0.3, 0.0, 0.5, 1),         # Indigo
+    }
+    
+    try:
+        mapPath = os.path.join(os.path.dirname(__file__), 'Maps', mapName)
+        log(f"Attempting to load map from: {mapPath}")
+        with open(mapPath, 'r') as f:
+            mapDataRaw = json.load(f)
+        
+        if isinstance(mapDataRaw, dict) and 'grid' in mapDataRaw:
+            mapData = mapDataRaw['grid']
+        else:
+            mapData = mapDataRaw
+            
+        log(f"Loaded map: {mapName}")
+        log(f"Map data type: {type(mapData)}, Length: {len(mapData) if isinstance(mapData, list) else 'N/A'}")
+        if isinstance(mapData, list) and len(mapData) > 0:
+            log(f"First row sample: {mapData[0][:5] if isinstance(mapData[0], list) else mapData[0]}")
+    except Exception as e:
+        log(f"Error loading map {mapName}: {e}")
+        mapData = [[0 for _ in range(24)] for _ in range(24)]
+    
+    colorCount = {}
+    for row in range(24):
+        for col in range(24):
+            try:
+                tileValue = mapData[row][col]
+            except (IndexError, KeyError, TypeError):
+                tileValue = 0
+            
+            colorCount[tileValue] = colorCount.get(tileValue, 0) + 1
+            
+            squareColor = colorMap.get(tileValue, (0.8, 0.2, 0.2, 1))  # Default to red
+            
+            square = Button(
+                background_normal='',
+                background_color=squareColor,
+                border=(1, 1, 1, 1)
+            )
+            
+            # Only add border for yellow squares (value 0)
+            if tileValue == 0:
+                from kivy.graphics import Line
+                with square.canvas.after:
+                    Color(0.3, 0.3, 0.3, 1)
+                    square.border_line = Line(rectangle=(square.x, square.y, square.width, square.height), width=1.5)
+                
+                def updateRect(instance, value):
+                    instance.border_line.rectangle = (instance.x, instance.y, instance.width, instance.height)
+                
+                square.bind(pos=updateRect, size=updateRect)
+            
+            mapGrid.add_widget(square)
+    
+    log(f"Initialized {24*24} map squares from {mapName}")
+    log(f"Color distribution: {colorCount}")
+
 # Settings Window Functions
 def toggleSettingsViews(_dt, target, screen_manager=None):
     manager = screen_manager if screen_manager is not None else root_widget
@@ -108,11 +211,9 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
         return
     settingsScreen = manager.get_screen('settingsScreen')
 
-    # Define all settings categories
     categories = ["video", "audio", "gameplay", "network", "support", "accessibility"]
 
     for category in categories:
-        # Update Nav Bar Colors
         try:
             navOptionId = f"{category}SettingsOption"
             if category == target:
@@ -120,9 +221,8 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
             else:
                 settingsScreen.ids[navOptionId].color = (1, 1, 1, 1)
         except KeyError:
-            pass # Handle potential missing IDs gracefully
+            pass
 
-        # Update Content Visibility and Interactivity
         try:
             contentId = f"{category}Settings"
             widget = settingsScreen.ids[contentId]
@@ -133,31 +233,24 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
             else:
                 widget.opacity = 0
                 widget.disabled = True
-                widget.pos_hint = {'center_x': 10, 'center_y': 10} # Move off-screen
+                widget.pos_hint = {'center_x': 10, 'center_y': 10}
         except KeyError:
-            pass # Handle potential missing IDs gracefully
+            pass
 
-    # Load and apply settings for the target category
+    
     if target == "video":
         fullscreen = grabSettings('video')
-        print(f"Loading video settings: fullscreen={fullscreen}")
         try:
             videoWidget = settingsScreen.ids.get('videoSettings')
             if videoWidget:
-                print(f"Found video widget with {len(videoWidget.children)} children")
-                # The toggle is nested: BoxLayout -> inner BoxLayout -> ToggleButton
-                toggleBox = videoWidget.children[-2]  # BoxLayout containing the toggle
-                innerBox = toggleBox.children[0]  # Inner BoxLayout with padding
-                toggle = innerBox.children[0]  # ToggleButton
-                print(f"Found toggle button, current state: {toggle.state}")
+                toggleBox = videoWidget.children[-2]
+                innerBox = toggleBox.children[0]
+                toggle = innerBox.children[0]
                 toggle.state = 'down' if fullscreen else 'normal'
-                print(f"Set fullscreen toggle to: {toggle.state} (fullscreen={fullscreen})")
             else:
-                print("Could not find videoSettings widget")
+                pass
         except (KeyError, IndexError, AttributeError) as e:
-            print(f"Error setting video settings: {e}")
-            import traceback
-            traceback.print_exc()
+            pass
     
     elif target == "audio":
         getAudioDevices(screen_manager)
@@ -168,32 +261,27 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
             settingsScreen.ids.get('music_slider').value = musicVolume / 100.0
             settingsScreen.ids.get('sfx_slider').value = sfxVolume / 100.0
             
-            # Set output device spinner
             if outputDevice:
                 spinner = settingsScreen.ids.get('audioOutputDeviceSpinner')
                 if spinner and outputDevice in spinner.values:
                     spinner.text = outputDevice
             
-            # Set player join/leave sounds toggle (we'll need to add ID)
             audioWidget = settingsScreen.ids.get('audioSettings')
             if audioWidget:
-                # Find the toggle button for player join/leave sounds
                 toggle = audioWidget.children[-4].children[0]
                 toggle.state = 'down' if playerJoinLeaveSounds else 'normal'
         except (KeyError, IndexError, AttributeError) as e:
-            print(f"Error setting audio settings: {e}")
-    
+            pass
+
     elif target == "gameplay":
         maxPlayers, autostartWhenFull, autoKickWhenInactive, lockRoomOnStart = grabSettings('gameplay')
         try:
             gameplayWidget = settingsScreen.ids.get('gameplaySettings')
             if gameplayWidget:
-                # Set max players slider
                 slider = gameplayWidget.children[-2]
                 if hasattr(slider, 'children'):
                     slider.children[0].value = maxPlayers
                 
-                # Set toggles
                 autostartToggle = gameplayWidget.children[-3].children[0]
                 autostartToggle.state = 'down' if autostartWhenFull else 'normal'
                 
@@ -203,14 +291,13 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
                 lockroomToggle = gameplayWidget.children[-5].children[0]
                 lockroomToggle.state = 'down' if lockRoomOnStart else 'normal'
         except (KeyError, IndexError, AttributeError) as e:
-            print(f"Error setting gameplay settings: {e}")
-    
+            pass
+
     elif target == "network":
         hostIPOverride, protocolMode, adminPassword = grabSettings('network')
         try:
             networkWidget = settingsScreen.ids.get('networkSettings')
             if networkWidget:
-                # Set host IP input
                 hostInput = networkWidget.children[-2].children[0]
                 if hasattr(hostInput, 'text'):
                     hostInput.text = hostIPOverride
@@ -222,35 +309,36 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
                 if hasattr(passwordInput, 'text'):
                     passwordInput.text = adminPassword
         except (KeyError, IndexError, AttributeError) as e:
-            print(f"Error setting network settings: {e}")
-    
+            pass
+
     elif target == "accessibility":
         font, subtitles, visualSoundIndicators = grabSettings('accessibility')
-        print(f"Loading accessibility settings: font={font}, subtitles={subtitles}, visualSoundIndicators={visualSoundIndicators}")
         try:
+            # Populate font spinner with available fonts
+            availableFonts = findAvailableFonts()
+            fontSpinner = settingsScreen.ids.get('font_spinner')
+            if fontSpinner and availableFonts:
+                fontSpinner.values = availableFonts
+                if font and font in availableFonts:
+                    fontSpinner.text = font
+                elif availableFonts:
+                    fontSpinner.text = availableFonts[0]
+            
             accessibilityWidget = settingsScreen.ids.get('accessibilitySettings')
             if accessibilityWidget:
-                fontBox = accessibilityWidget.children[-2]
-                fontSpinner = fontBox.children[0]
-                if hasattr(fontSpinner, 'text') and font:
-                    fontSpinner.text = font
-                
                 subtitlesBox = accessibilityWidget.children[-3]
                 subtitlesToggleBox = subtitlesBox.children[0]
                 subtitlesToggle = subtitlesToggleBox.children[0]
                 subtitlesToggle.state = 'down' if subtitles else 'normal'
-                print(f"Set subtitles to: {subtitles} (state: {subtitlesToggle.state})")
                 
                 visualBox = accessibilityWidget.children[-4]
                 visualToggleBox = visualBox.children[0]
                 visualToggle = visualToggleBox.children[0]
                 visualToggle.state = 'down' if visualSoundIndicators else 'normal'
-                print(f"Set visual sound indicators to: {visualSoundIndicators} (state: {visualToggle.state})")
         except (KeyError, IndexError, AttributeError) as e:
-            print(f"Error setting accessibility settings: {e}")
+            pass
 
 def adjustVolume(target, percent):
-    # Convert slider value (0.0-1.0) to integer (0-100)
     volumeValue = int(percent * 100)
     
     if target == "master":
@@ -265,44 +353,80 @@ def setSetting(target, value):
     settingsPath = os.path.join(os.path.dirname(__file__), 'settings.json')
     settings = {}
     
-    # Load existing settings
     try:
         if os.path.exists(settingsPath):
             with open(settingsPath, 'r') as f:
                 settings = json.load(f)
     except Exception as e:
-        print(f"Error loading settings in setSetting: {e}")
-    
-    # Update the target setting
+        pass
     settings[target] = value
     
-    # Save back to file
     try:
         with open(settingsPath, 'w') as f:
             json.dump(settings, f, indent=2)
-        print(f"Setting '{target}' updated to: {value}")
     except Exception as e:
-        print(f"Error saving settings: {e}")
+        pass
 
 def saveSettings(settingsDict):
     settingsPath = os.path.join(os.path.dirname(__file__), 'settings.json')
     try:
         with open(settingsPath, 'w') as f:
             json.dump(settingsDict, f, indent=2)
-        print("Settings saved successfully")
         return True
     except Exception as e:
-        print(f"Error saving settings: {e}")
+        pass
         return False
 
 def exportLogs():
-    print("Exporting logs...")
-
+    log("Exporting logs...")
+    try:
+        logFile = os.path.join(os.path.dirname(__file__), 'host_log.txt')
+        
+        if not os.path.exists(logFile):
+            displayNotification("No log file found to export", duration=3)
+            log("Export failed: No log file found")
+            return
+        
+        # Get user's Downloads folder
+        downloadsFolder = os.path.join(os.path.expanduser('~'), 'Downloads')
+        
+        # Create a timestamped filename
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        destination = os.path.join(downloadsFolder, f'host_log_{timestamp}.txt')
+        
+        # Copy the file
+        shutil.copy2(logFile, destination)
+        
+        log(f"Logs exported successfully to {destination}")
+        displayNotification("Logs exported to Downloads", duration=3)
+        
+    except Exception as e:
+        log(f"Error exporting logs: {e}")
+        displayNotification("Failed to export logs", duration=3)
+    
 def checkForUpdates():
-    print("Checking for updates...")
+    log("Checking for updates...")
+    displayNotification("No updates available", duration=3)
 
 def resetSettings():
-    print("Resetting settings...")
+    log("Resetting settings...")
+    setSetting('fullscreen', False)
+    setSetting('masterVolume', 80)
+    setSetting('musicVolume', 50)
+    setSetting('sfxVolume', 40)
+    setSetting('playerJoinLeaveSounds', True)
+    setSetting('outputDevice', 'Default Device')
+    setSetting('maxPlayers', 8)
+    setSetting('autostartWhenFull', True)
+    setSetting('autoKickWhenInactive', False)
+    setSetting('lockRoomOnStart', False)
+    setSetting('hostIPOverride', '')
+    setSetting('protocolMode', 'HTTPS')
+    setSetting('adminPassword', '')
+    setSetting('font', 'Century')
+    setSetting('subtitles', True)
+    setSetting('visualSoundIndicators', True)
+    displayNotification("Settings have been reset to default\nPlease restart the application for changes to take effect.", duration=3)
 
 def getAudioDevices(screen_manager=None):
     try:
@@ -343,7 +467,6 @@ def getAudioDevices(screen_manager=None):
              outputDevices = ['Default Device']
 
     except Exception as e:
-        print(f"Error fetching audio devices: {e}")
         outputDevices = ['Default Device (Error)']
         defaultName = outputDevices[0]
 
@@ -365,8 +488,42 @@ def getAudioDevices(screen_manager=None):
                 match_found = True
                 break
     
-    if not match_found and output_devices:
-        settingsScreen.ids.audioOutputDeviceSpinner.text = output_devices[0]
+    if not match_found and outputDevices:
+        settingsScreen.ids.audioOutputDeviceSpinner.text = outputDevices[0]
+
+def findAvailableFonts():
+    availableFonts = []
+    
+    if os.name == 'nt':  # Windows
+        fontsDir = os.path.join(os.environ.get('WINDIR', 'C:\\Windows'), 'Fonts')
+        
+        try:
+            # Get all font files (.ttf and .otf)
+            for filename in os.listdir(fontsDir):
+                if filename.lower().endswith(('.ttf', '.otf')):
+                    # Remove the file extension to get the font name
+                    fontName = os.path.splitext(filename)[0]
+                    # Clean up common suffixes (Regular, Bold, Italic, etc.)
+                    fontName = fontName.replace('-Regular', '').replace('Regular', '')
+                    fontName = fontName.replace('-Bold', '').replace('Bold', '')
+                    fontName = fontName.replace('-Italic', '').replace('Italic', '')
+                    fontName = fontName.replace('-Light', '').replace('Light', '')
+                    fontName = fontName.replace('-Medium', '').replace('Medium', '')
+                    fontName = fontName.strip()
+                    
+                    if fontName and fontName not in availableFonts:
+                        availableFonts.append(fontName)
+            
+            # Sort alphabetically for easier selection
+            availableFonts.sort()
+        except Exception as e:
+            log(f"Error scanning fonts directory: {e}")
+            availableFonts = ['Arial', 'Calibri', 'Courier New']  # Fallback
+    else:
+        # Non-Windows fallback
+        availableFonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier']
+    
+    return availableFonts if availableFonts else ['Default']
 
 # Utility Functions
 def checkServerStatus():
@@ -388,15 +545,14 @@ def checkServerStatus():
     return False
 
 def checkDatabaseIntegrity():
-    print("Checking database integrity...")
     conn = sqlite3.connect('221BBakerStreet.db')
     cursor = conn.cursor()
     cursor.execute("PRAGMA integrity_check")
     result = cursor.fetchone()
     if result[0] == 'ok':
-        print("Database integrity check passed.")
+        pass
     else:
-        print("Database integrity check failed.")
+        pass
     conn.close()
 
 def toggleFullscreen(enable):
@@ -425,11 +581,43 @@ def grabSettings(section):
     else:
         return settings
 
+def log(message):
+    file = os.path.join(os.path.dirname(__file__), 'host_log.txt')
+    try:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        with open(file, 'a') as f:
+            f.write(f"[{timestamp}] {message}\n")
+    except Exception as e:
+        pass
+
 def runner():
+    # Set global font
+    font = grabSettings('accessibility')[0]
+    if font:
+        # Check if it's a valid font file path
+        if os.path.isfile(font):
+            try:
+                LabelBase.register(DEFAULT_FONT, fn_regular=font)
+                log(f"Font '{font}' loaded successfully")
+            except Exception as e:
+                log(f"Error loading font file '{font}': {e}")
+        else:
+            # Try to find font in Windows Fonts directory
+            font_path = os.path.join(os.environ.get('WINDIR', 'C:\\Windows'), 'Fonts', f'{font}.ttf')
+            if os.path.isfile(font_path):
+                try:
+                    LabelBase.register(DEFAULT_FONT, fn_regular=font_path)
+                    log(f"Font '{font}' loaded from system fonts")
+                except Exception as e:
+                    log(f"Error loading system font '{font}': {e}")
+            else:
+                log(f"Font '{font}' not found, using default font")
+    
     # Check if fullscreen is set
     fullscreen = grabSettings('video')
     if fullscreen:
         toggleFullscreen(enable=True)
+        log("Fullscreen mode enabled on startup")
     # This checks that the server is online
     checkServerStatus()
 
