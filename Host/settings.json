@@ -1,0 +1,18 @@
+{
+  "fullscreen": false,
+  "masterVolume": 81,
+  "musicVolume": 52,
+  "sfxVolume": 42,
+  "playerJoinLeaveSounds": true,
+  "outputDevice": "Default Device",
+  "maxPlayers": 8,
+  "autostartWhenFull": true,
+  "autoKickWhenInactive": false,
+  "lockRoomOnStart": false,
+  "hostIPOverride": "test.com",
+  "protocolMode": "HTTPS",
+  "adminPassword": "test",
+  "font": "Roboto",
+  "subtitles": true,
+  "visualSoundIndicators": true
+}

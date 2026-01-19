@@ -2,8 +2,9 @@
 #:import Animation kivy.animation.Animation
 #:import switchScreen host.switchScreen
 #:import toggleSettingsViews host.toggleSettingsViews
+#:import setSetting host.setSetting
+#:import adjustVolume host.adjustVolume
 #:import toggleFullscreen host.toggleFullscreen
-#:import changeMasterVolume host.changeMasterVolume
 #:import exportLogs host.exportLogs
 #:import checkForUpdates host.checkForUpdates
 #:import resetSettings host.resetSettings
@@ -446,6 +447,7 @@ ScreenManager:
                                     radius: [6,]
                             
                             on_state: toggleFullscreen(self.state == 'down')
+                            on_state: setSetting('fullscreen', self.state == 'down')
 
                 # Spacer and Footer
                 Widget:
@@ -516,7 +518,7 @@ ScreenManager:
                         cursor_size: (0, 0)
                         padding: 20
                         background_width: 0
-                        on_value: changeMasterVolume(self.value)
+                        on_value: adjustVolume('master', self.value)
                         canvas.before:
                             Color:
                                 rgba: (0.3, 0.3, 0.3, 1)
@@ -577,6 +579,7 @@ ScreenManager:
                         cursor_size: (0, 0)
                         padding: 20
                         background_width: 0
+                        on_value: adjustVolume('music', self.value)
                         canvas.before:
                             Color:
                                 rgba: (0.3, 0.3, 0.3, 1)
@@ -637,6 +640,7 @@ ScreenManager:
                         cursor_size: (0, 0)
                         padding: 20
                         background_width: 0
+                        on_value: adjustVolume('sfx', self.value)
                         canvas.before:
                             Color:
                                 rgba: (0.3, 0.3, 0.3, 1)

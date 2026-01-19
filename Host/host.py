@@ -15,6 +15,9 @@ import requests
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities
+import sqlite3
+import json
+import os
 
 _device = AudioUtilities.GetSpeakers()
 _endpoint_volume = _device.EndpointVolume
@@ -54,7 +57,6 @@ class HoverButton(Button):
 serverStatus = False
 currentScreen = "welcomeScreen"
 
-# Switch Screen Functions
 # Switch Screen Functions
 def switchScreen(screenName, screen_manager=None):
     manager = screen_manager if screen_manager is not None else root_widget
@@ -112,18 +114,18 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
     for category in categories:
         # Update Nav Bar Colors
         try:
-            nav_option_id = f"{category}SettingsOption"
+            navOptionId = f"{category}SettingsOption"
             if category == target:
-                settingsScreen.ids[nav_option_id].color = (0.749, 0.659, 0.427, 1)
+                settingsScreen.ids[navOptionId].color = (0.749, 0.659, 0.427, 1)
             else:
-                settingsScreen.ids[nav_option_id].color = (1, 1, 1, 1)
+                settingsScreen.ids[navOptionId].color = (1, 1, 1, 1)
         except KeyError:
             pass # Handle potential missing IDs gracefully
 
         # Update Content Visibility and Interactivity
         try:
-            content_id = f"{category}Settings"
-            widget = settingsScreen.ids[content_id]
+            contentId = f"{category}Settings"
+            widget = settingsScreen.ids[contentId]
             if category == target:
                 widget.opacity = 1
                 widget.disabled = False
@@ -135,14 +137,163 @@ def toggleSettingsViews(_dt, target, screen_manager=None):
         except KeyError:
             pass # Handle potential missing IDs gracefully
 
-    if target == "audio":
+    # Load and apply settings for the target category
+    if target == "video":
+        fullscreen = grabSettings('video')
+        print(f"Loading video settings: fullscreen={fullscreen}")
+        try:
+            videoWidget = settingsScreen.ids.get('videoSettings')
+            if videoWidget:
+                print(f"Found video widget with {len(videoWidget.children)} children")
+                # The toggle is nested: BoxLayout -> inner BoxLayout -> ToggleButton
+                toggleBox = videoWidget.children[-2]  # BoxLayout containing the toggle
+                innerBox = toggleBox.children[0]  # Inner BoxLayout with padding
+                toggle = innerBox.children[0]  # ToggleButton
+                print(f"Found toggle button, current state: {toggle.state}")
+                toggle.state = 'down' if fullscreen else 'normal'
+                print(f"Set fullscreen toggle to: {toggle.state} (fullscreen={fullscreen})")
+            else:
+                print("Could not find videoSettings widget")
+        except (KeyError, IndexError, AttributeError) as e:
+            print(f"Error setting video settings: {e}")
+            import traceback
+            traceback.print_exc()
+    
+    elif target == "audio":
         getAudioDevices(screen_manager)
+        masterVolume, musicVolume, sfxVolume, playerJoinLeaveSounds, outputDevice = grabSettings('audio')
+        try:
+            # Set sliders
+            settingsScreen.ids.get('master_slider').value = masterVolume / 100.0
+            settingsScreen.ids.get('music_slider').value = musicVolume / 100.0
+            settingsScreen.ids.get('sfx_slider').value = sfxVolume / 100.0
+            
+            # Set output device spinner
+            if outputDevice:
+                spinner = settingsScreen.ids.get('audioOutputDeviceSpinner')
+                if spinner and outputDevice in spinner.values:
+                    spinner.text = outputDevice
+            
+            # Set player join/leave sounds toggle (we'll need to add ID)
+            audioWidget = settingsScreen.ids.get('audioSettings')
+            if audioWidget:
+                # Find the toggle button for player join/leave sounds
+                toggle = audioWidget.children[-4].children[0]
+                toggle.state = 'down' if playerJoinLeaveSounds else 'normal'
+        except (KeyError, IndexError, AttributeError) as e:
+            print(f"Error setting audio settings: {e}")
+    
+    elif target == "gameplay":
+        maxPlayers, autostartWhenFull, autoKickWhenInactive, lockRoomOnStart = grabSettings('gameplay')
+        try:
+            gameplayWidget = settingsScreen.ids.get('gameplaySettings')
+            if gameplayWidget:
+                # Set max players slider
+                slider = gameplayWidget.children[-2]
+                if hasattr(slider, 'children'):
+                    slider.children[0].value = maxPlayers
+                
+                # Set toggles
+                autostartToggle = gameplayWidget.children[-3].children[0]
+                autostartToggle.state = 'down' if autostartWhenFull else 'normal'
+                
+                autokickToggle = gameplayWidget.children[-4].children[0]
+                autokickToggle.state = 'down' if autoKickWhenInactive else 'normal'
+                
+                lockroomToggle = gameplayWidget.children[-5].children[0]
+                lockroomToggle.state = 'down' if lockRoomOnStart else 'normal'
+        except (KeyError, IndexError, AttributeError) as e:
+            print(f"Error setting gameplay settings: {e}")
+    
+    elif target == "network":
+        hostIPOverride, protocolMode, adminPassword = grabSettings('network')
+        try:
+            networkWidget = settingsScreen.ids.get('networkSettings')
+            if networkWidget:
+                # Set host IP input
+                hostInput = networkWidget.children[-2].children[0]
+                if hasattr(hostInput, 'text'):
+                    hostInput.text = hostIPOverride
+                
+                protocolToggle = networkWidget.children[-3].children[0]
+                protocolToggle.state = 'down' if protocolMode == 'HTTPS' else 'normal'
+                
+                passwordInput = networkWidget.children[-4].children[0]
+                if hasattr(passwordInput, 'text'):
+                    passwordInput.text = adminPassword
+        except (KeyError, IndexError, AttributeError) as e:
+            print(f"Error setting network settings: {e}")
+    
+    elif target == "accessibility":
+        font, subtitles, visualSoundIndicators = grabSettings('accessibility')
+        print(f"Loading accessibility settings: font={font}, subtitles={subtitles}, visualSoundIndicators={visualSoundIndicators}")
+        try:
+            accessibilityWidget = settingsScreen.ids.get('accessibilitySettings')
+            if accessibilityWidget:
+                fontBox = accessibilityWidget.children[-2]
+                fontSpinner = fontBox.children[0]
+                if hasattr(fontSpinner, 'text') and font:
+                    fontSpinner.text = font
+                
+                subtitlesBox = accessibilityWidget.children[-3]
+                subtitlesToggleBox = subtitlesBox.children[0]
+                subtitlesToggle = subtitlesToggleBox.children[0]
+                subtitlesToggle.state = 'down' if subtitles else 'normal'
+                print(f"Set subtitles to: {subtitles} (state: {subtitlesToggle.state})")
+                
+                visualBox = accessibilityWidget.children[-4]
+                visualToggleBox = visualBox.children[0]
+                visualToggle = visualToggleBox.children[0]
+                visualToggle.state = 'down' if visualSoundIndicators else 'normal'
+                print(f"Set visual sound indicators to: {visualSoundIndicators} (state: {visualToggle.state})")
+        except (KeyError, IndexError, AttributeError) as e:
+            print(f"Error setting accessibility settings: {e}")
 
-def toggleFullscreen(enable):
-    Window.fullscreen = enable
+def adjustVolume(target, percent):
+    # Convert slider value (0.0-1.0) to integer (0-100)
+    volumeValue = int(percent * 100)
+    
+    if target == "master":
+        setSetting('masterVolume', volumeValue)
+        _endpoint_volume.SetMasterVolumeLevelScalar(float(percent), None)
+    elif target == "music":
+        setSetting('musicVolume', volumeValue)
+    elif target == "sfx":
+        setSetting('sfxVolume', volumeValue)
 
-def changeMasterVolume(percent):
-    _endpoint_volume.SetMasterVolumeLevelScalar(float(percent), None)
+def setSetting(target, value):
+    settingsPath = os.path.join(os.path.dirname(__file__), 'settings.json')
+    settings = {}
+    
+    # Load existing settings
+    try:
+        if os.path.exists(settingsPath):
+            with open(settingsPath, 'r') as f:
+                settings = json.load(f)
+    except Exception as e:
+        print(f"Error loading settings in setSetting: {e}")
+    
+    # Update the target setting
+    settings[target] = value
+    
+    # Save back to file
+    try:
+        with open(settingsPath, 'w') as f:
+            json.dump(settings, f, indent=2)
+        print(f"Setting '{target}' updated to: {value}")
+    except Exception as e:
+        print(f"Error saving settings: {e}")
+
+def saveSettings(settingsDict):
+    settingsPath = os.path.join(os.path.dirname(__file__), 'settings.json')
+    try:
+        with open(settingsPath, 'w') as f:
+            json.dump(settingsDict, f, indent=2)
+        print("Settings saved successfully")
+        return True
+    except Exception as e:
+        print(f"Error saving settings: {e}")
+        return False
 
 def exportLogs():
     print("Exporting logs...")
@@ -236,7 +387,49 @@ def checkServerStatus():
         return False
     return False
 
+def checkDatabaseIntegrity():
+    print("Checking database integrity...")
+    conn = sqlite3.connect('221BBakerStreet.db')
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA integrity_check")
+    result = cursor.fetchone()
+    if result[0] == 'ok':
+        print("Database integrity check passed.")
+    else:
+        print("Database integrity check failed.")
+    conn.close()
+
+def toggleFullscreen(enable):
+    """Toggle fullscreen mode using desktop resolution"""
+    if enable:
+        Window.fullscreen = 'auto'  # Use desktop resolution
+    else:
+        Window.fullscreen = False  # Windowed mode
+
+def grabSettings(section):
+    settingsPath = os.path.join(os.path.dirname(__file__), 'settings.json')
+    
+    with open(settingsPath, 'r') as f:
+        settings = json.load(f)
+    
+    if section == 'video':
+        return settings['fullscreen']
+    elif section == 'audio':
+        return settings['masterVolume'], settings['musicVolume'], settings['sfxVolume'], settings['playerJoinLeaveSounds'], settings['outputDevice']
+    elif section == 'gameplay':
+        return settings['maxPlayers'], settings['autostartWhenFull'], settings['autoKickWhenInactive'], settings['lockRoomOnStart']
+    elif section == 'network':
+        return settings['hostIPOverride'], settings['protocolMode'], settings['adminPassword']
+    elif section == 'accessibility':
+        return settings['font'], settings['subtitles'], settings['visualSoundIndicators']
+    else:
+        return settings
+
 def runner():
+    # Check if fullscreen is set
+    fullscreen = grabSettings('video')
+    if fullscreen:
+        toggleFullscreen(enable=True)
     # This checks that the server is online
     checkServerStatus()
 
