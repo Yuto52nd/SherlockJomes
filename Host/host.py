@@ -147,6 +147,7 @@ def initializeGameMap(screen_manager=None, mapName='original.json'):
         13: (0.5, 0.7, 0.2, 1),         # Lime
         14: (0.8, 0.6, 0.2, 1),         # Gold
         15: (0.3, 0.0, 0.5, 1),         # Indigo
+        16 : (0.1, 0.1, 0.1, 1),         # Black
     }
     
     try:
