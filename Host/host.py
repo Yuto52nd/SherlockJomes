@@ -6,7 +6,7 @@ from kivy.uix.label import Label
 from kivy.properties import BooleanProperty, StringProperty, NumericProperty, ListProperty, ObjectProperty
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
-from kivy.graphics import Color, RoundedRectangle
+from kivy.graphics import Color, RoundedRectangle, Rectangle, PushMatrix, PopMatrix, Rotate
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.textinput import TextInput
@@ -156,18 +156,172 @@ def initializeGameMap(screen_manager=None, mapName='original.json'):
         with open(mapPath, 'r') as f:
             mapDataRaw = json.load(f)
         
+        # Extract grid and image mappings
         if isinstance(mapDataRaw, dict) and 'grid' in mapDataRaw:
             mapData = mapDataRaw['grid']
+            imageMappings = mapDataRaw.get('images', {})
         else:
             mapData = mapDataRaw
+            imageMappings = {}
             
         log(f"Loaded map: {mapName}")
         log(f"Map data type: {type(mapData)}, Length: {len(mapData) if isinstance(mapData, list) else 'N/A'}")
         if isinstance(mapData, list) and len(mapData) > 0:
             log(f"First row sample: {mapData[0][:5] if isinstance(mapData[0], list) else mapData[0]}")
+        if imageMappings:
+            log(f"Image mappings: {imageMappings}")
     except Exception as e:
         log(f"Error loading map {mapName}: {e}")
         mapData = [[0 for _ in range(24)] for _ in range(24)]
+        imageMappings = {}
+    
+    if imageMappings:
+        for tileValueStr, imagePath in imageMappings.items():
+            tileValue = int(tileValueStr)
+            fullImagePath = os.path.join(os.path.dirname(__file__), imagePath)
+            
+            if os.path.exists(fullImagePath):
+                visited = [[False for _ in range(24)] for _ in range(24)]
+                blocks = []
+                
+                # Special handling for tile 16 (lampposts) - find linear blocks only
+                if tileValue == 16:
+                    for row in range(24):
+                        for col in range(24):
+                            try:
+                                if mapData[row][col] == tileValue and not visited[row][col]:
+                                    # Check if this starts a horizontal or vertical line
+                                    block = [(row, col)]
+                                    visited[row][col] = True
+                                    
+                                    # Try horizontal extension
+                                    horizontalBlock = block.copy()
+                                    c = col + 1
+                                    while c < 24 and mapData[row][c] == tileValue:
+                                        horizontalBlock.append((row, c))
+                                        visited[row][c] = True
+                                        c += 1
+                                    
+                                    # Try vertical extension
+                                    verticalBlock = [(row, col)]
+                                    r = row + 1
+                                    while r < 24 and mapData[r][col] == tileValue:
+                                        verticalBlock.append((r, col))
+                                        r += 1
+                                    
+                                    # Use whichever extension is longer
+                                    if len(horizontalBlock) > len(verticalBlock):
+                                        blocks.append(horizontalBlock)
+                                    else:
+                                        # Mark vertical cells as visited
+                                        for vr, vc in verticalBlock:
+                                            visited[vr][vc] = True
+                                        blocks.append(verticalBlock)
+                            except (IndexError, KeyError, TypeError):
+                                pass
+                else:
+                    # For non-lamppost tiles, use standard flood fill
+                    for row in range(24):
+                        for col in range(24):
+                            try:
+                                if mapData[row][col] == tileValue and not visited[row][col]:
+                                    block = []
+                                    queue = [(row, col)]
+                                    visited[row][col] = True
+                                    
+                                    while queue:
+                                        r, c = queue.pop(0)
+                                        block.append((r, c))
+                                        
+                                        # Check 4 adjacent cells (up, down, left, right)
+                                        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                                            nr, nc = r + dr, c + dc
+                                            if (0 <= nr < 24 and 0 <= nc < 24 and 
+                                                not visited[nr][nc] and 
+                                                mapData[nr][nc] == tileValue):
+                                                visited[nr][nc] = True
+                                                queue.append((nr, nc))
+                                    
+                                    blocks.append(block)
+                            except (IndexError, KeyError, TypeError):
+                                pass
+                
+                # Process each block separately
+                for blockIdx, block in enumerate(blocks):
+                    minRow = min(r for r, c in block)
+                    maxRow = max(r for r, c in block)
+                    minCol = min(c for r, c in block)
+                    maxCol = max(c for r, c in block)
+                    
+                    # Determine orientation: horizontal if width > height, vertical otherwise
+                    width = maxCol - minCol + 1
+                    height = maxRow - minRow + 1
+                    isHorizontal = width > height
+                    
+                    # Only rotate if it's tile 16 (lamppost) and horizontal
+                    shouldRotate = (tileValue == 16 and isHorizontal)
+                    
+                    # Add image to canvas.before of mapGrid with rotation if needed
+                    if shouldRotate:
+                        with mapGrid.canvas.before:
+                            Color(1, 1, 1, 1)
+                            PushMatrix()
+                            rotateInstr = Rotate(angle=90, origin=(0, 0))
+                            imageRect = Rectangle(source=fullImagePath)
+                            PopMatrix()
+                        
+                        def updateImagePos(instance, value, rect=imageRect, rot=rotateInstr,
+                                          mr=minRow, Mr=maxRow, mc=minCol, Mc=maxCol):
+                            gridWidth = instance.width
+                            gridHeight = instance.height
+                            squareSize = min(gridWidth / 24, gridHeight / 24)
+                            
+                            x = instance.x + mc * squareSize
+                            y = instance.y + (23 - Mr) * squareSize
+                            width = (Mc - mc + 1) * squareSize
+                            height = (Mr - mr + 1) * squareSize
+                            
+                            # Calculate center for rotation
+                            centerX = x + width / 2
+                            centerY = y + height / 2
+                            
+                            # Set rotation
+                            rot.angle = 90
+                            rot.origin = (centerX, centerY)
+                            
+                            # Position: shift to account for rotation around center
+                            # When rotated 90°, the width becomes height and vice versa
+                            rect.pos = (centerX - height/2, centerY - width/2)
+                            rect.size = (height, width)
+                        
+                        log(f"Added HORIZONTAL lamppost block {blockIdx+1} at rows {minRow}-{maxRow}, cols {minCol}-{maxCol} (w={width}, h={height})")
+                    else:
+                        with mapGrid.canvas.before:
+                            Color(1, 1, 1, 1)
+                            imageRect = Rectangle(source=fullImagePath)
+                        
+                        def updateImagePos(instance, value, rect=imageRect, 
+                                          mr=minRow, Mr=maxRow, mc=minCol, Mc=maxCol):
+                            gridWidth = instance.width
+                            gridHeight = instance.height
+                            squareSize = min(gridWidth / 24, gridHeight / 24)
+                            
+                            x = instance.x + mc * squareSize
+                            y = instance.y + (23 - Mr) * squareSize
+                            width = (Mc - mc + 1) * squareSize
+                            height = (Mr - mr + 1) * squareSize
+                            
+                            rect.pos = (x, y)
+                            rect.size = (width, height)
+                        
+                        log(f"Added {'horizontal' if isHorizontal else 'vertical'} image {imagePath} for tile value {tileValue} block {blockIdx+1} at rows {minRow}-{maxRow}, cols {minCol}-{maxCol}")
+                    
+                    mapGrid.bind(pos=updateImagePos, size=updateImagePos)
+                    Clock.schedule_once(lambda dt: updateImagePos(mapGrid, None), 0.1)
+                    
+                    log(f"Added {'horizontal' if isHorizontal else 'vertical'} image {imagePath} for tile value {tileValue} block {blockIdx+1} at rows {minRow}-{maxRow}, cols {minCol}-{maxCol}")
+            else:
+                log(f"Image not found: {fullImagePath}")
     
     colorCount = {}
     for row in range(24):
@@ -179,7 +333,11 @@ def initializeGameMap(screen_manager=None, mapName='original.json'):
             
             colorCount[tileValue] = colorCount.get(tileValue, 0) + 1
             
-            squareColor = colorMap.get(tileValue, (0.8, 0.2, 0.2, 1))  # Default to red
+            # Make tiles with images transparent, others use their color
+            if str(tileValue) in imageMappings:
+                squareColor = (0, 0, 0, 0)  # Transparent
+            else:
+                squareColor = colorMap.get(tileValue, (0.8, 0.2, 0.2, 1))  # Default to red
             
             square = Button(
                 background_normal='',

@@ -1392,6 +1392,12 @@ ScreenManager:
                 pos: self.pos
                 size: self.size
                 radius: [20,]
+        canvas.after:
+            Color:
+                rgba: (0, 0, 0, 1)
+            Line:
+                rectangle: (self.x, self.y, self.width, self.height)
+                width: 4
         GridLayout:
             id: mapGrid
             cols: 24
