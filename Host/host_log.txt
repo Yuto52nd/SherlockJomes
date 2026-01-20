@@ -1407,3 +1407,327 @@
 [2026-01-20 14:45:12] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
 [2026-01-20 14:45:13] Initialized 576 map squares from original.json
 [2026-01-20 14:45:13] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
+[2026-01-20 16:28:56] Font 'CENTURY' loaded from system fonts
+[2026-01-20 16:29:44] Attempting to load map from: c:\Users\baile\Documents\GitHub\SherlockJomes\Host\Maps\original.json
+[2026-01-20 16:29:44] Loaded map: original.json
+[2026-01-20 16:29:44] Map data type: <class 'list'>, Length: 24
+[2026-01-20 16:29:44] First row sample: [1, 1, 1, 1, 1]
+[2026-01-20 16:29:44] Image mappings: {'1': 'Images/221B.jpg', '2': 'Images/Chemist.jpg', '3': 'Images/NewsAgent.jpg', '4': 'Images/Locksmith.jpg', '5': 'Images/Park.jpg', '6': 'Images/Hotel.jpg', '7': 'Images/Tobacconist.jpg', '8': 'Images/Pawnbroker.jpg', '9': 'Images/CarriageDepot.jpg', '10': 'Images/Thearte.jpg', '11': 'Images/TheBoarsHead.jpg', '12': 'Images/ScotlandYard.jpg', '13': 'Images/Bank.jpg', '14': 'Images/Museum.jpg', '15': 'Images/Docks.jpg', '16': 'Images/Lampost.jpg'}
+[2026-01-20 16:29:44] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:29:44] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:29:44] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:29:44] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:29:44] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:29:44] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:29:44] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:29:44] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:29:44] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:29:44] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:29:44] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:29:44] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:29:44] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:29:44] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:29:44] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:29:44] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:29:44] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:29:44] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:29:44] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:29:44] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:29:44] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:29:44] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:29:44] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:29:44] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:29:44] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:29:44] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:29:44] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:29:44] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:29:44] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:29:44] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:29:44] Added HORIZONTAL lamppost block 5 at rows 8-8, cols 18-22 (w=5, h=1)
+[2026-01-20 16:29:44] Added horizontal image Images/Lampost.jpg for tile value 16 block 5 at rows 8-8, cols 18-22
+[2026-01-20 16:29:44] Added HORIZONTAL lamppost block 6 at rows 9-9, cols 18-22 (w=5, h=1)
+[2026-01-20 16:29:44] Added horizontal image Images/Lampost.jpg for tile value 16 block 6 at rows 9-9, cols 18-22
+[2026-01-20 16:29:44] Added HORIZONTAL lamppost block 7 at rows 16-16, cols 10-16 (w=7, h=1)
+[2026-01-20 16:29:44] Added horizontal image Images/Lampost.jpg for tile value 16 block 7 at rows 16-16, cols 10-16
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:29:44] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:29:45] Initialized 576 map squares from original.json
+[2026-01-20 16:29:45] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
+[2026-01-20 16:40:40] Font 'CENTURY' loaded from system fonts
+[2026-01-20 16:40:42] Attempting to load map from: c:\Users\baile\Documents\GitHub\SherlockJomes\Host\Maps\original.json
+[2026-01-20 16:40:42] Loaded map: original.json
+[2026-01-20 16:40:42] Map data type: <class 'list'>, Length: 24
+[2026-01-20 16:40:42] First row sample: [1, 1, 1, 1, 1]
+[2026-01-20 16:40:42] Image mappings: {'1': 'Images/221B.jpg', '2': 'Images/Chemist.jpg', '3': 'Images/NewsAgent.jpg', '4': 'Images/Locksmith.jpg', '5': 'Images/Park.jpg', '6': 'Images/Hotel.jpg', '7': 'Images/Tobacconist.jpg', '8': 'Images/Pawnbroker.jpg', '9': 'Images/CarriageDepot.jpg', '10': 'Images/Thearte.jpg', '11': 'Images/TheBoarsHead.jpg', '12': 'Images/ScotlandYard.jpg', '13': 'Images/Bank.jpg', '14': 'Images/Museum.jpg', '15': 'Images/Docks.jpg', '16': 'Images/Lampost.jpg'}
+[2026-01-20 16:40:42] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:40:42] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:40:42] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:40:42] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:40:42] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:40:42] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:40:42] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:40:42] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:40:42] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:40:42] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:40:42] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:40:42] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:40:42] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:40:42] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:40:42] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:40:42] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:40:42] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:40:42] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:40:42] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:40:42] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:40:42] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:40:42] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:40:42] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:40:42] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:40:42] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:40:42] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:40:42] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:40:42] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:40:42] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:40:42] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:40:42] Added HORIZONTAL lamppost block 5 at rows 8-8, cols 18-22 (w=5, h=1)
+[2026-01-20 16:40:42] Added horizontal image Images/Lampost.jpg for tile value 16 block 5 at rows 8-8, cols 18-22
+[2026-01-20 16:40:42] Added HORIZONTAL lamppost block 6 at rows 9-9, cols 18-22 (w=5, h=1)
+[2026-01-20 16:40:42] Added horizontal image Images/Lampost.jpg for tile value 16 block 6 at rows 9-9, cols 18-22
+[2026-01-20 16:40:42] Added HORIZONTAL lamppost block 7 at rows 16-16, cols 10-16 (w=7, h=1)
+[2026-01-20 16:40:42] Added horizontal image Images/Lampost.jpg for tile value 16 block 7 at rows 16-16, cols 10-16
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:40:42] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:40:42] Initialized 576 map squares from original.json
+[2026-01-20 16:40:42] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
+[2026-01-20 16:40:53] Font 'CENTURY' loaded from system fonts
+[2026-01-20 16:40:54] Attempting to load map from: c:\Users\baile\Documents\GitHub\SherlockJomes\Host\Maps\original.json
+[2026-01-20 16:40:54] Loaded map: original.json
+[2026-01-20 16:40:54] Map data type: <class 'list'>, Length: 24
+[2026-01-20 16:40:54] First row sample: [1, 1, 1, 1, 1]
+[2026-01-20 16:40:54] Image mappings: {'1': 'Images/221B.jpg', '2': 'Images/Chemist.jpg', '3': 'Images/NewsAgent.jpg', '4': 'Images/Locksmith.jpg', '5': 'Images/Park.jpg', '6': 'Images/Hotel.jpg', '7': 'Images/Tobacconist.jpg', '8': 'Images/Pawnbroker.jpg', '9': 'Images/CarriageDepot.jpg', '10': 'Images/Thearte.jpg', '11': 'Images/TheBoarsHead.jpg', '12': 'Images/ScotlandYard.jpg', '13': 'Images/Bank.jpg', '14': 'Images/Museum.jpg', '15': 'Images/Docks.jpg', '16': 'Images/Lampost.jpg'}
+[2026-01-20 16:40:54] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:40:54] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:40:54] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:40:54] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:40:54] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:40:54] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:40:54] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:40:54] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:40:55] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:40:55] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:40:55] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:40:55] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:40:55] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:40:55] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:40:55] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:40:55] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:40:55] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:40:55] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:40:55] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:40:55] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:40:55] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:40:55] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:40:55] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:40:55] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:40:55] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:40:55] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:40:55] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:40:55] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:40:55] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:40:55] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:40:55] Added HORIZONTAL lamppost block 5 at rows 8-8, cols 18-22 (w=5, h=1)
+[2026-01-20 16:40:55] Added horizontal image Images/Lampost.jpg for tile value 16 block 5 at rows 8-8, cols 18-22
+[2026-01-20 16:40:55] Added HORIZONTAL lamppost block 6 at rows 9-9, cols 18-22 (w=5, h=1)
+[2026-01-20 16:40:55] Added horizontal image Images/Lampost.jpg for tile value 16 block 6 at rows 9-9, cols 18-22
+[2026-01-20 16:40:55] Added HORIZONTAL lamppost block 7 at rows 16-16, cols 10-16 (w=7, h=1)
+[2026-01-20 16:40:55] Added horizontal image Images/Lampost.jpg for tile value 16 block 7 at rows 16-16, cols 10-16
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:40:55] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:40:55] Initialized 576 map squares from original.json
+[2026-01-20 16:40:55] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
+[2026-01-20 16:42:03] Font 'CENTURY' loaded from system fonts
+[2026-01-20 16:42:04] Attempting to load map from: c:\Users\baile\Documents\GitHub\SherlockJomes\Host\Maps\original.json
+[2026-01-20 16:42:04] Loaded map: original.json
+[2026-01-20 16:42:04] Map data type: <class 'list'>, Length: 24
+[2026-01-20 16:42:04] First row sample: [1, 1, 1, 1, 1]
+[2026-01-20 16:42:04] Image mappings: {'1': 'Images/221B.jpg', '2': 'Images/Chemist.jpg', '3': 'Images/NewsAgent.jpg', '4': 'Images/Locksmith.jpg', '5': 'Images/Park.jpg', '6': 'Images/Hotel.jpg', '7': 'Images/Tobacconist.jpg', '8': 'Images/Pawnbroker.jpg', '9': 'Images/CarriageDepot.jpg', '10': 'Images/Thearte.jpg', '11': 'Images/TheBoarsHead.jpg', '12': 'Images/ScotlandYard.jpg', '13': 'Images/Bank.jpg', '14': 'Images/Museum.jpg', '15': 'Images/Docks.jpg', '16': 'Images/Lampost.jpg'}
+[2026-01-20 16:42:04] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:42:04] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:42:04] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:42:04] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:42:04] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:42:04] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:42:04] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:42:04] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:42:04] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:42:04] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:42:04] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:42:04] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:42:04] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:42:04] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:42:04] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:42:04] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:42:04] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:42:04] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:42:04] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:42:04] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:42:04] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:42:04] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:42:04] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:42:04] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:42:04] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:42:04] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:42:04] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:42:04] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:42:04] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:42:04] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:42:04] Added HORIZONTAL lamppost block 5 at rows 8-8, cols 18-22 (w=5, h=1)
+[2026-01-20 16:42:04] Added horizontal image Images/Lampost.jpg for tile value 16 block 5 at rows 8-8, cols 18-22
+[2026-01-20 16:42:04] Added HORIZONTAL lamppost block 6 at rows 9-9, cols 18-22 (w=5, h=1)
+[2026-01-20 16:42:04] Added horizontal image Images/Lampost.jpg for tile value 16 block 6 at rows 9-9, cols 18-22
+[2026-01-20 16:42:04] Added HORIZONTAL lamppost block 7 at rows 16-16, cols 10-16 (w=7, h=1)
+[2026-01-20 16:42:04] Added horizontal image Images/Lampost.jpg for tile value 16 block 7 at rows 16-16, cols 10-16
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:42:04] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:42:05] Initialized 576 map squares from original.json
+[2026-01-20 16:42:05] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
+[2026-01-20 16:54:18] Font 'CENTURY' loaded from system fonts
+[2026-01-20 16:54:19] Attempting to load map from: c:\Users\baile\Documents\GitHub\SherlockJomes\Host\Maps\original.json
+[2026-01-20 16:54:19] Loaded map: original.json
+[2026-01-20 16:54:19] Map data type: <class 'list'>, Length: 24
+[2026-01-20 16:54:19] First row sample: [1, 1, 1, 1, 1]
+[2026-01-20 16:54:19] Image mappings: {'1': 'Images/221B.jpg', '2': 'Images/Chemist.jpg', '3': 'Images/NewsAgent.jpg', '4': 'Images/Locksmith.jpg', '5': 'Images/Park.jpg', '6': 'Images/Hotel.jpg', '7': 'Images/Tobacconist.jpg', '8': 'Images/Pawnbroker.jpg', '9': 'Images/CarriageDepot.jpg', '10': 'Images/Thearte.jpg', '11': 'Images/TheBoarsHead.jpg', '12': 'Images/ScotlandYard.jpg', '13': 'Images/Bank.jpg', '14': 'Images/Museum.jpg', '15': 'Images/Docks.jpg', '16': 'Images/Lampost.jpg'}
+[2026-01-20 16:54:19] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:54:19] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 16:54:19] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:54:19] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 16:54:19] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:54:19] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 16:54:19] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:54:19] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 16:54:19] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:54:19] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 16:54:19] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:54:19] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 16:54:19] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:54:19] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 16:54:19] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:54:19] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 16:54:19] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:54:19] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 16:54:19] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:54:19] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 16:54:19] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:54:19] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 16:54:19] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:54:19] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 16:54:19] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:54:19] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 16:54:19] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:54:19] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 16:54:20] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:54:20] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 16:54:20] Added HORIZONTAL lamppost block 5 at rows 8-8, cols 18-22 (w=5, h=1)
+[2026-01-20 16:54:20] Added horizontal image Images/Lampost.jpg for tile value 16 block 5 at rows 8-8, cols 18-22
+[2026-01-20 16:54:20] Added HORIZONTAL lamppost block 6 at rows 9-9, cols 18-22 (w=5, h=1)
+[2026-01-20 16:54:20] Added horizontal image Images/Lampost.jpg for tile value 16 block 6 at rows 9-9, cols 18-22
+[2026-01-20 16:54:20] Added HORIZONTAL lamppost block 7 at rows 16-16, cols 10-16 (w=7, h=1)
+[2026-01-20 16:54:20] Added horizontal image Images/Lampost.jpg for tile value 16 block 7 at rows 16-16, cols 10-16
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:54:20] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 16:54:20] Initialized 576 map squares from original.json
+[2026-01-20 16:54:20] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
+[2026-01-20 17:02:58] Font 'CENTURY' loaded from system fonts
+[2026-01-20 17:02:59] Attempting to load map from: c:\Users\baile\Documents\GitHub\SherlockJomes\Host\Maps\original.json
+[2026-01-20 17:02:59] Loaded map: original.json
+[2026-01-20 17:02:59] Map data type: <class 'list'>, Length: 24
+[2026-01-20 17:02:59] First row sample: [1, 1, 1, 1, 1]
+[2026-01-20 17:02:59] Image mappings: {'1': 'Images/221B.jpg', '2': 'Images/Chemist.jpg', '3': 'Images/NewsAgent.jpg', '4': 'Images/Locksmith.jpg', '5': 'Images/Park.jpg', '6': 'Images/Hotel.jpg', '7': 'Images/Tobacconist.jpg', '8': 'Images/Pawnbroker.jpg', '9': 'Images/CarriageDepot.jpg', '10': 'Images/Thearte.jpg', '11': 'Images/TheBoarsHead.jpg', '12': 'Images/ScotlandYard.jpg', '13': 'Images/Bank.jpg', '14': 'Images/Museum.jpg', '15': 'Images/Docks.jpg', '16': 'Images/Lampost.jpg'}
+[2026-01-20 17:02:59] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 17:02:59] Added horizontal image Images/221B.jpg for tile value 1 block 1 at rows 0-3, cols 0-6
+[2026-01-20 17:02:59] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 17:02:59] Added vertical image Images/Chemist.jpg for tile value 2 block 1 at rows 0-3, cols 8-11
+[2026-01-20 17:02:59] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 17:02:59] Added vertical image Images/NewsAgent.jpg for tile value 3 block 1 at rows 0-3, cols 13-16
+[2026-01-20 17:02:59] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 17:02:59] Added horizontal image Images/Locksmith.jpg for tile value 4 block 1 at rows 0-2, cols 18-22
+[2026-01-20 17:02:59] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 17:02:59] Added vertical image Images/Park.jpg for tile value 5 block 1 at rows 5-18, cols 0-2
+[2026-01-20 17:02:59] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 17:02:59] Added vertical image Images/Hotel.jpg for tile value 6 block 1 at rows 5-11, cols 4-8
+[2026-01-20 17:02:59] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 17:02:59] Added horizontal image Images/Tobacconist.jpg for tile value 7 block 1 at rows 5-8, cols 10-16
+[2026-01-20 17:02:59] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 17:02:59] Added horizontal image Images/Pawnbroker.jpg for tile value 8 block 1 at rows 4-7, cols 18-22
+[2026-01-20 17:02:59] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 17:02:59] Added vertical image Images/CarriageDepot.jpg for tile value 9 block 1 at rows 12-18, cols 4-8
+[2026-01-20 17:02:59] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 17:02:59] Added horizontal image Images/Thearte.jpg for tile value 10 block 1 at rows 10-15, cols 10-16
+[2026-01-20 17:02:59] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 17:02:59] Added vertical image Images/TheBoarsHead.jpg for tile value 11 block 1 at rows 10-14, cols 18-22
+[2026-01-20 17:02:59] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 17:02:59] Added horizontal image Images/ScotlandYard.jpg for tile value 12 block 1 at rows 20-23, cols 0-5
+[2026-01-20 17:02:59] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 17:02:59] Added vertical image Images/Bank.jpg for tile value 13 block 1 at rows 20-23, cols 6-8
+[2026-01-20 17:02:59] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 17:02:59] Added horizontal image Images/Museum.jpg for tile value 14 block 1 at rows 18-22, cols 10-15
+[2026-01-20 17:02:59] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 17:02:59] Added vertical image Images/Docks.jpg for tile value 15 block 1 at rows 16-23, cols 18-23
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 1 at rows 0-3, cols 7-7
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 2 at rows 0-3, cols 12-12
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 3 at rows 0-2, cols 17-17
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 4 at rows 0-2, cols 23-23
+[2026-01-20 17:02:59] Added HORIZONTAL lamppost block 5 at rows 8-8, cols 18-22 (w=5, h=1)
+[2026-01-20 17:02:59] Added horizontal image Images/Lampost.jpg for tile value 16 block 5 at rows 8-8, cols 18-22
+[2026-01-20 17:02:59] Added HORIZONTAL lamppost block 6 at rows 9-9, cols 18-22 (w=5, h=1)
+[2026-01-20 17:02:59] Added horizontal image Images/Lampost.jpg for tile value 16 block 6 at rows 9-9, cols 18-22
+[2026-01-20 17:02:59] Added HORIZONTAL lamppost block 7 at rows 16-16, cols 10-16 (w=7, h=1)
+[2026-01-20 17:02:59] Added horizontal image Images/Lampost.jpg for tile value 16 block 7 at rows 16-16, cols 10-16
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 17:02:59] Added vertical image Images/Lampost.jpg for tile value 16 block 8 at rows 18-22, cols 16-16
+[2026-01-20 17:03:00] Initialized 576 map squares from original.json
+[2026-01-20 17:03:00] Color distribution: {1: 27, 16: 36, 2: 15, 3: 15, 4: 14, 0: 143, 8: 19, 5: 38, 6: 34, 7: 27, 10: 41, 11: 24, 9: 34, 15: 46, 14: 29, 12: 23, 13: 11}
